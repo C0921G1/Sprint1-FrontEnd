@@ -1,0 +1,12 @@
+h1{
+  color: #333333;
+}
+
+.page-link {
+  color: #f28123;
+}
+.page-item.active .page-link{
+  color: #fff;
+  background-color: #f28123;
+  border-color: #f28123;
+}

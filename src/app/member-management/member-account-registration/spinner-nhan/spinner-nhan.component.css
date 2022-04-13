@@ -1,0 +1,5 @@
+.transparentSpin .mat-dialog-container {
+  background: transparent !important;
+  max-width: none !important;
+  box-shadow: none;
+}

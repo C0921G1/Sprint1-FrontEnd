@@ -1,0 +1,9 @@
+body {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 13px;
+}
+
+
+.khanh_btn_update:hover{
+  background: #e07412 !important;
+}

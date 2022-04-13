@@ -1,0 +1,206 @@
+<body class="body-AnhVN">
+<h2 style="margin-top: 20px;margin-left: 20px;text-align: center;color: #566787;font-size:32px"><strong>Xác nhận
+  vé</strong></h2>
+<hr>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="container">
+        <img src="{{transaction.showTime.film.image}}" alt="Avatar"
+             class="image" style="width:100%">
+        <div class="middle">
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <table class="table table-striped table-hover">
+        <tr>
+          <th class="play-title" style="background-color: #f28123">{{transaction.showTime.film.name}}</th>
+          <th style="background-color: #f28123"></th>
+        </tr>
+        <tr>
+          <td class="td1">Màn hình :</td>
+          <td class="td2">{{transaction.showTime.screen.name}}</td>
+        </tr>
+        <tr>
+          <td class="td1">Ngày chiếu :</td>
+          <td class="td2">{{transaction.showTime.date |  date:"dd-MM-yyyy"}}</td>
+        </tr>
+        <tr>
+          <td class="td1">Giờ chiếu :</td>
+          <td class="td2">{{transaction.showTime.name}}</td>
+        </tr>
+<!--        <tr>-->
+<!--          <td class="td1">Ghế :</td>-->
+<!--&lt;!&ndash;                    <td class="td1">{{this.transfer}}</td>&ndash;&gt;-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td class="td1">Giá :</td>-->
+<!--          <td class="td2">-->
+<!--            &lt;!&ndash;            <p>{{transaction.selectedSeats.seatType.price}}</p>&ndash;&gt;-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--          <td class="td1"><strong style="color: #f28123">Tổng cộng :</strong></td>-->
+<!--          &lt;!&ndash;          <td class="td1">135.000 VND</td>&ndash;&gt;-->
+<!--        </tr>-->
+      </table>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="container">
+      </div>
+    </div>
+    <div class="col-lg-9">
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3">
+      <div style="text-align: center;margin-top: 10px"><strong> Ngày khởi chiếu
+        : {{transaction.showTime.film.startDate |  date:"dd-MM-yyyy"}}</strong></div>
+      <div style="text-align: center;"><strong> Đạo diễn : {{transaction.showTime.film.director}}</strong>
+      </div>
+      <br>
+      <!--      <div class="accordion" id="accordionExample">-->
+      <!--        <div class="accordion-item">-->
+      <!--          <h2 class="accordion-header" id="headingOne">-->
+      <!--            <button class="accordion-button" type="button" data-bs-toggle="collapse"-->
+      <!--                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">-->
+      <!--              Nội dung phim :-->
+      <!--            </button>-->
+      <!--          </h2>-->
+      <!--          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"-->
+      <!--               data-bs-parent="#accordionExample">-->
+      <!--            <div class="accordion-body">-->
+      <!--              <strong>Chi tiết :</strong>-->
+      <!--              Nỗi đau chính là tình yêu của nỗi đau, những vấn đề sinh thái chính, nhưng tôi cho loại thời-->
+      <!--              gian này để rơi-->
+      <!--              xuống, để một số nỗi đau và nỗi đau lớn. Để phần lớn điều đó xảy ra, bất kỳ ai trong chúng-->
+      <!--              ta cũng sẽ thực-->
+      <!--              hiện bất kỳ loại công việc nào ngoại trừ để tận dụng các mục tiêu từ nó. Nhưng nỗi đau trong-->
+      <!--              phim là không-->
+      <!--              thể lên án, trong niềm vui sướng nó muốn thoát khỏi nỗi đau bị co cụm trong đau đớn, không-->
+      <!--              có kết quả. Họ là-->
+      <!--              những ngoại lệ mà người mù khao khát, họ không nhìn thấy, họ là những người rũ bỏ trách-->
+      <!--              nhiệm với lỗi lầm-->
+      <!--              đang xoa dịu những nhọc nhằn của tâm hồn.-->
+      <!--              <div>-->
+      <!--                <br>-->
+      <!--                <br>-->
+      <!--                <div><h6><strong>Đạo diễn-->
+      <!--                </strong></h6></div>-->
+      <!--                <div>{{transaction.showTime.film.director}}</div>-->
+      <!--              </div>-->
+      <!--            </div>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <div class="accordion" id="accordionExample1" style="margin-bottom: 200px">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne1">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">
+              Thông tin phim :
+            </button>
+          </h2>
+          <div id="collapseOne1" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+               data-bs-parent="#accordionExample1">
+            <div class="accordion-body">
+              <strong>Thể loại : </strong>
+              {{transaction.showTime.film.filmType.name}}
+              <br>
+              <br>
+              <strong>Ngày kết thúc : </strong>
+              {{transaction.showTime.film.endDate  |  date:"dd-MM-yyyy"}}
+              <br>
+              <br>
+              <strong>Thời lượng : </strong>
+              {{transaction.showTime.film.duration}}
+              <br>
+              <br>
+              <strong>Phiên bản : </strong>
+              {{transaction.showTime.film.version}}
+              <br>
+              <br>
+              <strong>Diễn viên : </strong>
+              {{transaction.showTime.film.actor}}
+              <div>
+                <br>
+                <div><h6><strong>Nhà phát hành
+                </strong></h6></div>
+                <div>{{transaction.showTime.film.studio}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <table class="table table-striped table-hover">
+        <tr>
+          <th class="play-title" style="background-color: #f28123">Thông tin thành viên</th>
+          <th style="background-color: #f28123"></th>
+        </tr>
+        <tr>
+          <td class="td1">Mã thành viên :</td>
+          <td class="td2">{{transaction.code}}</td>
+        </tr>
+        <tr>
+          <td class="td1">CMND :</td>
+          <td class="td2">{{transaction.member.identityNumber}}</td>
+        </tr>
+        <tr>
+          <td class="td1">Họ tên :</td>
+          <td class="td2">{{transaction.member.name}}</td>
+        </tr>
+        <tr>
+          <td class="td1">Điểm thành viên :</td>
+          <td class="td2">{{transaction.member.point}}</td>
+        </tr>
+<!--        <tr>-->
+<!--          <td class="td1">Đổi vé :</td>-->
+<!--          &lt;!&ndash;          <td class="td1">{{transaction.ticketStatus}}</td>&ndash;&gt;-->
+<!--          <td class="td2">-->
+<!--            <div class="form-check">-->
+<!--              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">-->
+<!--              <label class="form-check-label" for="flexRadioDefault1">-->
+<!--                0-->
+<!--              </label>-->
+<!--            </div>-->
+<!--            <div class="form-check">-->
+<!--              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"-->
+<!--                     checked>-->
+<!--              <label class="form-check-label" for="flexRadioDefault2">-->
+<!--                1-->
+<!--              </label>-->
+<!--            </div>-->
+<!--            <div class="form-check">-->
+<!--              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"-->
+<!--                     checked>-->
+<!--              <label class="form-check-label" for="flexRadioDefault2">-->
+<!--                2-->
+<!--              </label>-->
+<!--            </div>-->
+<!--          </td>-->
+<!--        </tr>-->
+        <tr>
+          <td class="td1">Số điện thoại :</td>
+          <td class="td2">{{transaction.member.phone}}</td>
+        </tr>
+      </table>
+      <p style="text-align: center">
+        <button type="button" class="btn custom-btn-confirm" style="background: #f28123;margin-bottom: 200px"
+                [routerLink]="['/booking/list']" (click)="acceptTicket()">Xác nhận
+          vé
+        </button>
+      </p>
+    </div>
+  </div>
+</div>
+
+</body>

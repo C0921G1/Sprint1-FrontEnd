@@ -1,0 +1,53 @@
+
+<div class="form_wrapper">
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="title_container">
+        <h2>ĐĂNG NHẬP</h2>
+      </div>
+
+      <form focusInvalidInput [formGroup]="formGroup"  (ngSubmit)="onSubmit()">
+        <div class="input_field"><span><i aria-hidden="true" class="bi bi-file-lock-fill"></i></span>
+          <input type="text" formControlName="username" placeholder="Tên đăng nhập" required/>
+        </div>
+
+        <div class="input_field"><span> <i aria-hidden="true" class="bi bi-key-fill"></i></span>
+          <input type="password" formControlName="password" placeholder="Mật khẩu" required/>
+        </div>
+
+        <div class="input_field checkbox_option">
+          <label class="container-check" for="cb1">Lưu thông tin đăng nhập
+            <input type="checkbox" id="cb1" formControlName="remember_me">
+            <span class="checkmark"></span>
+          </label>
+
+        </div>
+
+        <input type="submit" value="Đăng nhập">
+
+        <div class="text-center or">
+          <span>Hoặc tiếp tục với</span>
+        </div>
+
+        <div class="flex-c-m">
+          <a href="#" class="login100-social-item bg1">
+            <i class="fa-brands fa-facebook tu_css_i"></i>
+          </a>
+
+          <a href="#" class="login100-social-item bg3">
+            <i class="fa-brands fa-google tu_css_i"></i>
+          </a>
+        </div>
+
+        <div class="text-center or">
+          <span>Bạn chưa có tài khoản ?</span>
+        </div>
+
+        <input type="button" value="Tạo mới tài khoản">
+      </form>
+
+
+    </div>
+  </div>
+</div>
+

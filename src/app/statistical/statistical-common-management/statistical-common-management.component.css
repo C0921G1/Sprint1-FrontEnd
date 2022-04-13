@@ -1,0 +1,21 @@
+.feeds{
+  font-size: 14px;
+}
+.btn{
+  margin: auto;
+  width: 230px;
+  background-color: white;
+}
+.time{
+  font-size: 11px;
+  color: dimgrey;
+}
+.bar{
+  height: 1100px;
+}
+.data{
+  position: absolute ;
+  right: 0;
+  padding-left: 25px;
+}
+

@@ -1,0 +1,136 @@
+<body class="body-AnhVN">
+<h2 style="margin-top: 20px;margin-left: 20px;text-align: center;"><strong>Danh Sách Phim</strong></h2>
+<hr>
+<div class="background">
+  <div class="container mt-1">
+    <div class="row">
+      <div class="col-lg-12">
+<!--        <div style="float: left">-->
+<!--          <a routerLink="/film/create" class="btn btn-secondary">-->
+<!--            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" fill="currentColor"-->
+<!--                 class="bi bi-plus-circle" viewBox="0 0 16 16">-->
+<!--              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>-->
+<!--              <path-->
+<!--                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>-->
+<!--            </svg>-->
+<!--            <span> Tạo mới phim</span></a>-->
+<!--        </div>-->
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title" style="height: 84px;">
+          <div class="row">
+            <div class="col-lg-5 col-md-3 col-sm-3 col-">
+              <div style="float: left;margin-top: 10px">
+                <a routerLink="/film/create" class="btn btn-secondary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" fill="currentColor"
+                       class="bi bi-plus-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path
+                      d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                  </svg>
+                  <span> Tạo mới phim</span></a>
+              </div>
+            </div>
+            <div class="col-lg-7 col-md-9 col-sm-9">
+              <div style="float: right">
+                <div class="input-group">
+                  <div style="display: flex">
+                    <div class="mx-1">
+                      <input  ngModel maxlength="25" autocomplete="off" [(ngModel)]="name" type="text" class="name form-control" placeholder="Tên phim" name="name">
+                    </div>
+
+                    <div class="mx-1">
+                      <mat-form-field appearance="fill">
+                        <mat-label >Ngày khởi chiếu</mat-label>
+                        <input  ngModel maxlength="25" autocomplete="off" class="" matInput [matDatepicker]="picker" [(ngModel)]="startDate"
+                                name="startDate" class="form-control">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="mx-1">
+                      <mat-form-field appearance="fill">
+                        <mat-label>Ngày kết thúc</mat-label>
+                        <input  ngModel maxlength="25" class="" autocomplete="off" matInput [matDatepicker]="picker1" [(ngModel)]="endDate" name="endDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                    <div class="mx-1">
+                      <button (click)="search()" class="btn btn-default search" type="submit"
+                              style=""><i class="glyphicon glyphicon-search text-white" style="height: 46px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                             fill="currentColor" class="bi bi-search" viewBox="0 0 16 16" style="margin-top: 3px !important; margin-left: 3px !important">
+                          <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg>
+                      </i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <table class="table table-striped table-hover">
+          <thead>
+          <tr *ngIf="totalElement >0">
+            <th>Phim</th>
+            <th>Ngày khởi chiếu</th>
+            <th>Ngày kết thúc</th>
+            <th>Hãng phim</th>
+            <th>Thời lượng(phút)</th>
+            <th>Phiên bản</th>
+            <th>Sửa/Xóa</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let film of films">
+            <td>{{film.name}}</td>
+            <td>{{film.startDate | date: 'dd-MM-yyyy'}}</td>
+            <td>{{film.endDate | date: 'dd-MM-yyyy'}}</td>
+            <td class="ellipsis" title="{{film.studio}}">{{film.studio}}</td>
+            <td>{{film.duration}}</td>
+            <td>{{film.version}}</td>
+            <td>
+              <a routerLink="/film/edit/{{film.id}}" class="settings" title="Chỉnh Sửa" data-toggle="tooltip">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="50" fill="currentColor"
+                     class="bi bi-pen" viewBox="0 0 16 16">
+                  <path
+                    d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                </svg>
+              </a>
+              <a (click)="openDialog(film.id)" class="delete" title="Xóa" data-toggle="tooltip">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="50" fill="currentColor"
+                     class="bi bi-trash" viewBox="0 0 16 16" style="cursor: pointer">
+                  <path
+                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                  <path fill-rule="evenodd"
+                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                </svg>
+              </a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="clearfix">
+          <div *ngIf="totalElement > 0" class="hint-text">Tổng cộng danh sách có <span style="color: orangered; font-weight: bold">{{totalElement}}</span> phim</div>
+          <div *ngIf="totalElement == 0" class="hint-text">Không có phim phù hợp</div>
+          <ul class="pagination">
+            <li *ngIf="page !=0" class="page-item"><a (click)="previousPage()" class="page-link" style="cursor: pointer">Trước</a></li>
+            <li *ngIf="totalPagination >0" class="page-item disabled page-link" style="color: orangered">{{page + 1}}/{{totalPagination}}</li>
+            <li *ngIf="page < totalPagination-1" class="page-item"><a (click)="nextPage()" class="page-link" style="cursor: pointer">Sau</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

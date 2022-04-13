@@ -1,0 +1,238 @@
+body {
+  /*font-family: Verdana, Geneva, sans-serif;*/
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  background: white;
+}
+
+.form_wrapper {
+  background: #efefef;
+  width: 800px;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 30px;
+  margin: 4% auto 4%;
+  position: relative;
+  z-index: 1;
+  border-top: 5px solid #f28123;
+
+}
+
+.form_wrapper .title_container {
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+.form_wrapper label {
+  font-size: 14px;
+}
+.form_wrapper .row {
+  margin: 10px -15px;
+}
+
+.form_wrapper .col_half {
+  width: 50%;
+  float: left;
+}
+.form_wrapper .input_field {
+  position: relative;
+  margin-top: 10px;
+
+}
+
+
+.form_wrapper input[type="text"], .form_wrapper input[type="email"], .form_wrapper input[type="date"], .form_wrapper input[type="password"] {
+  width: 100%;
+  padding: 8px 10px 9px 15px;
+  height: 35px;
+  border: 1px solid #333333;
+  box-sizing: border-box;
+  outline: none;
+  border-radius: 5px;
+}
+.form_wrapper input[type="text"]:hover, .form_wrapper input[type="email"]:hover, .form_wrapper input[type="date"]:hover, .form_wrapper input[type="password"]:hover {
+  background: #fafafa;
+}
+.form_wrapper input[type="text"]:focus, .form_wrapper input[type="email"]:focus, .form_wrapper input[type="date"]:focus, .form_wrapper input[type="password"]:focus {
+
+  box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
+  border: 1px solid #f5ba1a;
+  background: #fafafa;
+
+
+
+}
+.select_option {
+  position: relative;
+  width: 100%;
+}
+.select_option select {
+  display: inline-block;
+  width: 100%;
+  height: 35px;
+  padding: 0px 15px;
+  cursor: pointer;
+  color: #7b7b7b;
+  border: 1px solid #333333;
+  border-radius: 5px;
+  background: #fff;
+  /*appearance: none;*/
+
+}
+.select_option select::-ms-expand {
+  display: none;
+}
+.select_option select:hover, .select_option select:focus {
+  color: #333333;
+  background: #fafafa;
+  border-color: #f5ba1a;
+  outline: none;
+}
+.select_arrow {
+  position: absolute;
+  top: calc(50% - 4px);
+  right: 15px;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  border-width: 8px 5px 0 5px;
+  border-style: solid;
+  border-color: #7b7b7b transparent transparent transparent;
+}
+.select_option select:hover + .select_arrow, .select_option select:focus + .select_arrow {
+  border-top-color: #333333;
+}
+
+.form_container .row .col_half.last {
+  border-left: 1px solid #ccc;
+}
+
+
+
+/* Customize the label (the container) */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+  border-color: #fff;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  border: 1px solid #333333;
+  background-color: #ffffff;
+  /*border: 1px solid #333333;*/
+
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark{
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a background */
+.container input:checked ~ .checkmark {
+  background-color: #f28123;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  text-align: center;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+.term{
+  text-decoration: none;
+  color: #f28123;
+  font-weight: bold;
+}
+.form_wrapper input[type="submit"]{
+  background: #f28123;
+  height: 35px;
+  line-height: 35px;
+  width: 100%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.form_wrapper input[type="button"] {
+  background: #fff;
+  height: 35px;
+  line-height: 35px;
+  width: 100%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #f28123;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.form_wrapper input[type="submit"]:hover, .form_wrapper input[type="button"]:hover {
+  background: #f5ba1a;
+  color: #fff;
+}
+
+
+@media (max-width: 600px) {
+  .form_wrapper .col_half {
+    width: 100%;
+    float: none;
+  }
+  .bottom_row .col_half {
+    width: 50%;
+    float: left;
+  }
+  .form_container .row .col_half.last {
+    border-left: none;
+  }
+  .remember_me {
+    padding-bottom: 20px;
+  }
+}

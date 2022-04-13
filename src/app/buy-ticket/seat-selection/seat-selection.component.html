@@ -1,0 +1,236 @@
+<div class="seat_selection_wrapper container">
+  <!--Slide Banner-->
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="1000">
+            <img
+              src="https://koicine.com/wp-content/uploads/2022/03/phim-kinh-di%CC%A3-Vie%CC%A3%CC%82t-Nam-Bo%CC%81ng-De%CC%80.jpg"
+              class="d-block w-100"
+              alt="...">
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img style="position: relative; top: -121px"
+                 src="https://assets.fontsinuse.com/static/use-media-items/139/138869/full-2880x1040/6099a63b/wrath-of-man-2880x1040.jpeg"
+                 class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img style="position: relative; top: -265px"
+                 src="https://www.xtrafondos.com/en/descargar.php?id=6116&resolucion=3840x2160"
+                 class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!--Seat Choosing-->
+  <div class="row">
+    <!--Seat Map-->
+    <div class="seat_choosing col-8 col-lg-8 col-md-12 col-sm-12 p-0">
+      <h3 class="seat_choosing_title text-center my-3">CHỌN GHẾ</h3>
+      <div class="seat_map_wrapper">
+        <div class="row">
+          <div class="col-1 col-lg-1 col-md-1 col-sm-1 p-0">
+            &nbsp;&nbsp;
+          </div>
+          <div class="screen_wrapper col-11 col-lg-11 col-md-11 col-sm-11 p-0">
+            <p style="position: relative; top: 148px; font-weight: 600; color: #777777" class="text-center">Màn hình</p>
+            <img id="screen" src="https://www.myvue.com/assets/images/booking/screen-2x.png"
+                 alt="screen">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-1 col-lg-1 col-md-1 col-sm-1 p-0">
+            <ul class="column_title list-unstyled">
+              <li class="column_title_item text-center">
+                <div class="column_title_item_content">&nbsp;</div>
+              </li>
+              <li class="column_title_item text-center">
+                <div class="column_title_item_content">A</div>
+              </li>
+              <li class="column_title_item text-center">
+                <div class="column_title_item_content">B</div>
+              </li>
+              <li class="column_title_item text-center">
+                <div class="column_title_item_content">C</div>
+              </li>
+              <li class="column_title_item text-center">
+                <div class="column_title_item_content">D</div>
+              </li>
+              <li class="column_title_item text-center">
+                <div class="column_title_item_content">E</div>
+              </li>
+            </ul>
+          </div>
+          <div class="col-11 col-lg-11 col-md-11 col-sm-11 p-0">
+            <ul class="row_title list-unstyled d-flex justify-content-evenly m-0">
+              <li class="row_title_item text-center">
+                <div class="row_title_item_content">1</div>
+              </li>
+              <li class="row_title_item text-center">
+                <div class="row_title_item_content">2</div>
+              </li>
+              <li class="row_title_item text-center">
+                <div class="row_title_item_content">3</div>
+              </li>
+              <li class="row_title_item text-center">
+                <div class="row_title_item_content">4</div>
+              </li>
+              <li class="row_title_item text-center">
+                <div class="row_title_item_content">5</div>
+              </li>
+              <li class="row_title_item text-center">
+                <div class="row_title_item_content">6</div>
+              </li>
+              <li class="row_title_item text-center">
+                <div class="row_title_item_content">7</div>
+              </li>
+              <li class="row_title_item text-center">
+                <div class="row_title_item_content">8</div>
+              </li>
+              <li class="row_title_item text-center">
+                <div class="row_title_item_content">9</div>
+              </li>
+              <li class="row_title_item text-center">
+                <div class="row_title_item_content">10</div>
+              </li>
+            </ul>
+            <!--            <ul *ngIf="showContent" class="row_title list-unstyled d-flex justify-content-center flex-wrap">-->
+            <ul *ngIf="showContent" class="row_title list-unstyled d-flex flex-wrap justify-content-evenly">
+              <li *ngFor="let seatObj of seatList" class="row_title_item text-center seat_item">
+                <div [ngClass]="{'selecting_seat': seatObj.active}"
+                     class="seat_icon economy_seat d-flex justify-content-center align-items-center"
+                     [class.seat_icon_hover]="!seatObj.status"
+                     [class.ordered_seat]="seatObj.status" (click)="getSeat(seatObj)"
+                     [class.economy_seat]="seatObj.id <= 20"
+                     [class.common_seat]="seatObj.id <=40 && seatObj.id > 20"
+                     [class.VIP_seat]="seatObj.id > 40 && seatObj.id <= 50">{{seatObj.id}}
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--End Seat Map-->
+      <!--Seat Caption-->
+      <div class="seat_map_caption">
+        <ul class="list-unstyled d-flex justify-content-around">
+          <li>
+            <div class="seat_icon economy_seat"></div>
+            <p>Ghế tiết kiệm</p></li>
+          <li>
+            <div class="seat_icon common_seat"></div>
+            <p>Ghế phổ thông</p></li>
+          <li>
+            <div class="seat_icon VIP_seat"></div>
+            <p>Ghế VIP</p></li>
+          <li>
+            <div class="seat_icon ordered_seat"></div>
+            <p>Ghế đã đặt</p></li>
+          <li>
+            <div class="seat_icon selecting_seat"></div>
+            <p>Ghế đang chọn</p></li>
+        </ul>
+      </div>
+      <!--End Seat Map Caption-->
+      <!--Combo-->
+      <h3 class="text-center combo_title">HOT COMBO</h3>
+      <div style="padding: 20px" class="attached_service_wrapper">
+        <div class="attached_service_item d-flex justify-content-between">
+          <div class="attached_service_item_desc">
+            <img style="width: 80px; height: 80px"
+                 src="https://salt.tikicdn.com/cache/400x400/ts/product/c5/9d/41/4dcf799a77eafbbf0b2c7c0ee79c4938.jpg"
+                 alt="">
+            <p>{{this.combo.name}} <br>
+              {{this.combo.price | currency: 'VND'}}</p>
+          </div>
+          <div class="attached_service_item_quantity">
+            <div class="attached_service_item_button my-3">
+              <a class="combo_btn" (click)="minusCombo()"><i class="bi bi-dash-circle"></i></a>
+              <span id="combo1" class="combo_btn mx-3">{{comboNumber}}</span>
+              <a class="combo_btn" (click)="plusCombo()"><i class="bi bi-plus-circle"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End Seat Choosing-->
+    <div class="col-4 col-lg-4 col-md-12 col-sm-12 p-0">
+      <div class="container order_detail_position">
+
+        <!--Order Detail-->
+        <div style="padding: 20px" class="order_detail_wrapper">
+          <div class="order_detail_choosing_seat d-flex justify-content-between">
+            <h3 class="order_detail_title my-3">SỐ LƯỢNG VÉ</h3>
+            <div class="order_detail_ticket my-3">
+              <a class="quantity_btn" (click)="minusTicket()"><i class="bi bi-dash-circle"></i></a>
+              <span id="numberTicket" class="quantity_btn mx-3">{{this.orderDetailSeatNumber}}</span>
+              <a class="quantity_btn" (click)="plusTicket()"><i class="bi bi-plus-circle"></i></a>
+            </div>
+          </div>
+          <div class="order_detail_selected_seat my-3">
+            <div class="selected_seat_icon_wrapper d-flex justify-content-">
+              <div *ngFor="let seatChooseName of seatChoosenList"
+                   class="seat_icon selected_seat_icon text-center mx-1">{{this.seatMap[seatChooseName - 1]}}
+              </div>
+            </div>
+            <div *ngIf="countEconomySeat.length > 0"
+                 class="economy_seat_1 order_detail_selected_seat_information d-flex justify-content-between">
+              <h5>{{this.countEconomySeat.length}} x Ghế Tiết Kiệm</h5>
+              <h5>{{this.countEconomySeat.length * this.economySeat.price | currency: 'VND'}}</h5>
+            </div>
+            <div *ngIf="countCommonSeat.length > 0"
+                 class="economy_seat_1 order_detail_selected_seat_information d-flex justify-content-between">
+              <h5>{{this.countCommonSeat.length}} x Ghế Phổ thông</h5>
+              <h5>{{this.countCommonSeat.length * this.commonSeat.price | currency: 'VND'}}</h5>
+            </div>
+            <div *ngIf="countVIPSeat.length > 0"
+                 class="economy_seat_1 order_detail_selected_seat_information d-flex justify-content-between">
+              <h5>{{this.countVIPSeat.length}} x Ghế VIP</h5>
+              <h5>{{this.countVIPSeat.length * this.VIPSeat.price | currency: 'VND'}}</h5>
+            </div>
+            <div *ngIf="comboNumber > 0"
+                 class="economy_seat_1 order_detail_selected_seat_information d-flex justify-content-between">
+              <h5>{{this.comboNumber}} x Combo 1</h5>
+              <h5>{{this.comboNumber * this.combo.price | currency: 'VND'}}</h5>
+            </div>
+          </div>
+          <div class="order_detail_promotion my-3">
+            <h5>NHẬP MÃ KHUYẾN MÃI</h5>
+            <div style="width: 100%" class="enterPromo d-flex justify-content-evenly">
+              <input #promoCode style="width: 65%" class="form-control" type="text"
+                     placeholder="Nhập mã khuyến mãi">
+              <button class="btn promo_button" (click)="promotion(promoCode.value)" type="submit">Áp dụng</button>
+            </div>
+            <p style="color: red; margin: 10px 0 0 8px" *ngIf="this.errorPromoCode">Mã khuyến mãi không tồn tại!</p>
+          </div>
+          <div class="order_detail_total d-flex justify-content-between my-3">
+            <h3>TỔNG CỘNG:</h3>
+            <h3>{{this.totalPayment | currency: 'VND'}}</h3>
+          </div>
+          <div *ngIf="successPromoCode && this.seatChoosenList.length > 0" class="order_detail_promo_detail d-flex justify-content-between my-3">
+            <h5 style="color: var(--pj-dark-orange)">Mã giảm giá:</h5>
+            <h5>{{-50000 | currency: 'VND'}}</h5>
+          </div>
+          <div class="text-center">
+            <button class="btn booking_ticket_button text-decoration-none" (click)="transferPayment()"
+                    >ĐẶT VÉ
+            </button>
+          </div>
+        </div>
+        <!--End Order Detail-->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+.feeds {
+  font-size: 14px;
+}
+
+.btn {
+  background-color: white;
+  margin: auto;
+  width: 230px;
+}
+
+.time {
+  font-size: 11px;
+  color: dimgrey;
+}
+
+.bar {
+  background: rgb(255, 115, 0);
+  overflow-x: scroll;
+  height: 770px;
+}
+
+.data {
+  position: absolute;
+  right: 0;
+  padding-left:   25px;
+}
+*{
+  /*font-family: 'Inter', sans-serif !important;*/
+}
+.select {
+  background-color: #f28123;
+  color: white ;
+  width: 200px
+}
+.select option{
+  background-color: white;
+  color: #f28123 ;
+}
+

@@ -1,0 +1,237 @@
+<div class="wrapper container-fluid" style="background: #fffcf8">
+  <div class="inner">
+    <form class="CaHM-form" [formGroup]="formFilm" (ngSubmit)="create()" style="margin-bottom: 110px">
+      <h3><b>Thêm Mới Phim</b></h3>
+      <div class="form-group">
+        <div class="form-wrapper">
+          <label for="file-upload" class="custom-file-upload">
+            <img [src]="url" style="width: 160px; height: 80px ; border: none" for="file-upload" > <br>
+            Chọn File Image <span>(*)</span><br>
+            <i class="fa fa-cloud-upload" placeholder="Mời chọn file hình ảnh" for="file-upload"></i>
+            <input id="file-upload" type="file" (change)="showPreview($event)"
+                   accept="*.png.jpg*" id="image"/><br>
+          </label>
+          <div class="mt-2 text-danger"
+               *ngIf="flag1 == true">
+            File hình ảnh không được để trống!
+          </div>
+        </div>
+        <div class="form-wrapper" style="margin-top: 70px">
+          <label for="2">Tên phim <span>(*)</span></label>
+          <div class="form-holder">
+            <i class="zmdi zmdi-account-o"></i>
+            <input type="text" id="2" class="form-control" formControlName="name" placeholder="Mời nhập tên phim">
+          </div>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('name').hasError('required')&&
+            formFilm.get('name').dirty">
+            Tên phim không được để trống!
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-wrapper">
+          <label for="3">Nhà sản xuất <span>(*)</span></label>
+          <div class="form-holder">
+            <i style="font-style: normal; font-size: 15px;"></i>
+            <input type="text" id="3" class="form-control" formControlName="director"
+                   placeholder="Mời nhập nhà sản xuất">
+          </div>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('director').hasError('required')&&
+            formFilm.get('director').dirty">
+            Tên nhà sản xuất không được để trống!
+          </div>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('director').hasError('pattern') &&
+          formFilm.get('director').dirty">
+            Tên nhà sản xuất phải nhập đúng định dạng tên người vd: Nguyen Van Danh,..."
+          </div>
+
+
+        </div>
+        <div class="form-wrapper">
+
+          <label for="10">Diễn viên <span>(*)</span></label>
+          <div class="form-holder ">
+            <input id="10" type="text" class="form-control" formControlName="actor"
+                   placeholder="Mời nhập diễn viên chính">
+            <i class="zmdi zmdi-pin"></i>
+          </div>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('actor').hasError('required')&&
+            formFilm.get('actor').dirty">
+            Tên diễn viên không được để trống!
+          </div>
+        </div>
+      </div>
+      <div class="form-group" formGroupName="groupFilmDate">
+        <div class="form-wrapper">
+          <label for="4">Ngày khởi chiếu <span>(*)</span></label>
+          <div class="form-holder">
+            <i class="zmdi zmdi-lock-outline"></i>
+            <input type="date" id="4" class="form-control" formControlName="startDate">
+          </div>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('groupFilmDate').get('startDate').hasError('required')&&
+            formFilm.get('groupFilmDate').get('startDate').touched">
+            Ngay khởi chiếu không được để trống!
+          </div>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('groupFilmDate').get('startDate').hasError('checkStartDateOk')&&
+            (formFilm.get('groupFilmDate').get('startDate').dirty || formFilm.get('groupFilmDate').get('startDate').touched)">
+            Ngày bắt đầu khởi chiếu phải lớn hơn hoặc bằng ngày hiện tại
+          </div>
+        </div>
+        <div class="form-wrapper">
+          <label for="5">Ngày Kết thúc <span>(*)</span></label>
+          <div class="form-holder">
+            <i class="zmdi zmdi-lock-outline"></i>
+            <input id="5" type="date" class="form-control" formControlName="endDate">
+          </div>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('groupFilmDate').get('endDate').hasError('required')&&
+            formFilm.get('groupFilmDate').get('endDate').touched">
+            Ngày kết thúc không được để trống!
+          </div>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('groupFilmDate').hasError('notSuitableDate')&&
+            (formFilm.get('groupFilmDate').get('startDate').dirty ||
+             formFilm.get('groupFilmDate').get('startDate').touched)">
+            Ngày kết thúc phải sau ngày khởi chiếu!
+          </div>
+
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-wrapper">
+          <label for="e">Phòng chiếu <span>(*)</span></label>
+          <input class="form-control" list="datalistOption" id="e" placeholder="Mời nhập phòng chiếu"
+                 formControlName="studio">
+          <datalist id="datalistOption">
+            <option value="PC-01">
+            <option value="PC-02">
+            <option value="PC-03">
+            <option value="PC-04">
+          </datalist>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('studio').hasError('required')&&
+            formFilm.get('studio').dirty">
+            phòng chiếu không được để trống!
+          </div>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('studio').hasError('pattern')&&
+            formFilm.get('studio').dirty">
+            Phòng chiếu phải đúng định dạng cho trước vd: PC-01
+          </div>
+        </div>
+
+
+        <div class="form-wrapper">
+          <label for="7">Thời lượng phim <span>(*)</span></label>
+          <div class="form-holder ">
+            <i class="zmdi zmdi-face"></i>
+            <input id="7" type="number" class="form-control" formControlName="duration"
+                   placeholder="Mời nhập thời lượng">
+          </div>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('duration').hasError('required')&&
+            formFilm.get('duration').dirty">
+            Thời lượng phim không được để trống
+          </div>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('duration').hasError('pattern')&&
+            formFilm.get('duration').dirty">
+            Giá trị nhỏ nhất của thời lượng phim là 10 và lớn nhất là 240
+          </div>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('duration').hasError('min')&&
+            formFilm.get('duration').dirty">
+            Giá trị nhỏ nhất của thời lượng phim là 10 và lớn nhất là 240
+          </div>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('duration').hasError('max')&&
+            formFilm.get('duration').dirty">
+            Giá trị nhỏ nhất của thời lượng phim là 10 và lớn nhất là 240
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-wrapper">
+          <label for="8">Phiên bản <span>(*)</span></label>
+          <input class="form-control" list="phong" id="8" placeholder="Mời chọn phiên bản" formControlName="version">
+          <datalist id="phong">
+            <option value="2D">
+            <option value="3D">
+          </datalist>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('version').hasError('required')&&
+            formFilm.get('version').dirty">
+            Phiên bản không được để trống!
+          </div>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('version').hasError('pattern')&&
+            formFilm.get('version').dirty">
+            Phiên bản phải đúng định dạng cho trước vd: 2D
+          </div>
+        </div>
+
+
+        <div class="form-wrapper">
+          <label for="t"> Trailer <span>(*)</span></label>
+          <div class="form-holder ">
+            <input id="t" type="text" class="form-control" formControlName="trailer" placeholder="Mời nhập trailer">
+            <i class="zmdi zmdi-pin"></i>
+          </div>
+          <div class="mt-2 text-danger"
+               *ngIf="formFilm.get('trailer').hasError('required')&&
+            formFilm.get('trailer').dirty">
+            Trailer không được để trống!
+          </div>
+
+        </div>
+      </div>
+
+      <div class=" form-wrapper">
+        <div class="row">
+          <label>Thể loại phim <span>(*)</span></label>
+          <div class="col-lg-12">
+            <ul class="menu">
+              <li style="color: gray; margin-left: 53px" *ngFor="let filmType of fimTypeList ">{{filmType.name}}
+                <input  (change)="onChangeFood($event.target.value)" [value]="filmType.name" type="checkbox"
+                        formGroupName="filmType">
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-2 text-danger"
+           *ngIf="flag == true">
+        Thể loại phim không được để trống!
+      </div>
+
+      <div class="form-end">
+        <div class="button-holder1">
+          <a [routerLink]="['/film/list-film-test']">
+            <button type="submit"  class="button-holder">Quay Lại</button>
+          </a>
+        </div>
+
+        <div *ngIf="flag2 == true" style="margin-right: 110px;">
+          <mat-spinner></mat-spinner>
+        </div>
+
+
+
+        <div class="button-holder">
+          <button type="submit" >Xác Nhận</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+<!--<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">-->
+<!--  <p style="color: white">Please Wait. </p>-->
+<!--</ngx-spinner>-->

@@ -1,0 +1,112 @@
+<div class="container-md tuyChinh">
+  <div class="row">
+    <!--khung màn hình thanh toán -->
+    <div class="col-md-9  col-lg-9  col-sm-9 bg_color">
+
+      <div class="boder_test">
+        <h1 class="test_h1">Vui Lòng Thanh Toán</h1>
+        <form class="form_test">
+          <div class="row">
+            <div class="col-md-3">
+              <label class="control-label">Họ và Tên</label><span class="bat_buoc">(*)</span>
+            </div>
+            <div class="col-md-6">
+              <p class="chi-xem" id="name">{{receiveObj?.member.name}}</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <label class="control-label">Email</label><span class="bat_buoc">(*)</span>
+            </div>
+            <div class="col-md-6">
+              <p class="chi-xem">{{receiveObj?.member.email}}</p>
+
+              <!--              <input id="email" [value]="receiveObj?.member.email"  type="text" class="form-control">-->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <label class="control-label">Số Điện Thoại</label><span class="bat_buoc">(*)</span>
+            </div>
+            <div class="col-md-6">
+              <p class="chi-xem">{{receiveObj?.member.phone}}</p>
+
+              <!--              <input id="sdt" [value]="receiveObj?.member.phone" type="text" class="form-control" >-->
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <label class="control-label">Ngày Sinh</label><span class="bat_buoc">(*)</span>
+            </div>
+            <div class="col-md-6">
+              <p class="chi-xem">{{receiveObj?.member.dateOfBirth}}</p>
+
+              <!--              <input id="ngaySinh" [value]="receiveObj?.member.dateOfBirth" type="date" class="form-control">-->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-6">
+              <p style="font-size: 12px">(*)Bằng việc click/chạm vào Thanh Toán , bạn đã xác nhận hiểu rõ các <br><b>Quy
+                Định Giao Dịch Trục Tuyến</b> của rạp phim</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-6">
+              <button type="button" class="btn_click" [routerLink]="['/buy-ticket']" (click)="checkbox()">Hủy Thanh
+                Toán
+              </button>
+              <button type="button" class="btn_click" (click)="show()">Xác Nhận Thanh Toán</button>
+              <br><br>
+              <div *ngIf="check">
+                <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+
+              </div>
+
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+
+    <!--                khhung chi tiết phim sắp được thanh toán có lưu giữ số tiền để thanh toán paypal-->
+    <div class="col-md-3 col-lg-3 col-sm-3 khung_phim">
+      <div class="khung_phim1 col-md-12">
+        <img [src]="receiveObj?.showtime.film.image" width="306px" height="220px">
+        <h3 style=" font-size: 15px;padding-left: 10px"><b>{{receiveObj?.showtime.film.name}}</b></h3>
+        <h2 style=" font-size: 15px;padding-left: 10px">Đạo diễn:  {{receiveObj?.showtime.film.director}}</h2>
+        <span class="test_phim">{{receiveObj?.showtime.film.version}}</span><span style="font-size: 12px; color: red">(*)Phim chỉ dành cho khán giả trên 18 tuổi</span>
+        <hr>
+        <span><b class="testH2">Thời Gian</b> : </span> <span>{{receiveObj?.showtime.film.duration}} phút</span>
+        <hr>
+        <span><b class="testH2">Xuất Chiếu </b>: </span> <span>{{receiveObj?.showtime.name}}
+        | {{receiveObj?.showtime.date}}</span>
+        <hr>
+        <span><b class="testH2">Combo </b>: Combo 1 </span>
+        <hr>
+        <span><b class="testH2">Ghế </b> : </span> <span
+        *ngFor="let seatObj of this.seatChooseList">{{this.seatMap[seatObj - 1] + ' '}}</span>
+        <hr>
+        <span><b class="testH2">Tổng </b>: </span> <span>{{receiveObj?.totalPayment | currency: 'VND'}}</span>
+        <div *ngIf="check">
+          <hr>
+          <span><b class="testH2">Thanh Toán PayPal</b>: </span> <span>{{sum| currency :'USD' }}</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngIf="flag3434" style="margin-right: 110px;">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+</div>

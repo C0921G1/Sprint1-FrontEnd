@@ -1,0 +1,92 @@
+<!--NhanNt Quản lý đặt vé của tài khoản-->
+
+
+<div class="container" style="margin-bottom: 130px">
+
+  <!--history List-->
+  <br/>
+  <h1 class="text-center">Lich sử đặt vé</h1>
+
+
+  <!--  search/filter -->
+  <div class="row">
+
+    <form>
+      <div class="input-group">
+        <div class="col-lg-12">
+          <div style="display: flex; float: right; margin-bottom: 20px">
+            <!--            <input type="text" class="form-control" placeholder="Tìm kiếm" name="Tìm kiếm"-->
+            <!--                   style="height: 46px; width: 200px;">-->
+            <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Tên phim" name="name"
+                   style="height: 38px; width: 200px; ">
+            <button (click)="search()" class="btn btn-default" type="submit"><i
+              class="glyphicon glyphicon-search"
+              style="height: 46px">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                   fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
+            </i></button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr style="background-color: #f28123; color: white">
+      <th>#</th>
+      <th>Ngày</th>
+      <th>Số giao dịch</th>
+      <th>Phòng chiếu</th>
+      <th>Tên Phim</th>
+      <th>Tổng Tiền vé (VND)</th>
+      <th>Tiền combo (VND)</th>
+      <th>Điểm tích lũy</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of tradingHistoryList;index as i">
+      <td >{{i + 1}}</td>
+      <td class="col-1 " style="width: 10%">{{item.transactionalDate}}</td>
+      <td class="col-1 " style="padding-left: 25px;width: 10%">{{item.code}}</td>
+      <td class="col-1 " style="padding-left: 45px;width: 10%">{{item.screenName}}</td>
+      <td class="col-1 " style="width: 33%">{{item.filmName}}</td>
+      <td class="col-1 " style="width: 13%">{{item.ticketPrice|currency:'VND'}}</td>
+      <!--      <td *ngIf="">{{item.attachedPrice}}</td>-->
+      <td class="col-1 " style="width: 13%" *ngIf="item.attachedPrice === null; else elseBlock">0</td>
+      <ng-template #elseBlock>{{item.attachedPrice}}</ng-template>
+      <td class="col-1 " style="width: 11%">{{item.point}}</td>
+
+    </tr>
+
+    <!--  phân trang -->
+    <!--      <pagination-controls (pageChange)="p = $event" previousLabel="hi" nextLabel="hii" style="color: #f28123;background-color: black"></pagination-controls>-->
+    </tbody>
+  </table>
+
+  <div class=" row">
+    <h2 *ngIf="totalElement == 0" class="hint-text" style="color: #f28123; text-align: center">Bạn hãy đặt vé xem phim ngay thôi!</h2>
+    <div class="col-lg-4">
+      <div class="d-flex float-start">
+        <div *ngIf="totalElement > 0" class="hint-text">Tổng cộng danh sách có <small style="color: #f28123; font-weight: bold">{{totalElement}}</small> lịch sử xem phim</div>
+
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="float-end">
+        <ul class="d-flex " style="list-style: none;">
+          <li *ngIf="p !=0" class="page-item" style="cursor: pointer"><a (click)="previousPage()" class="page-link">Trước</a></li>
+          <li *ngIf="totalPagination >0" class="page-item disabled page-link">{{p + 1}}/{{totalPagination}}</li>
+          <li *ngIf="p < totalPagination-1" class="page-item" style="cursor: pointer"><a (click)="nextPage()" class="page-link">Sau</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+</div>

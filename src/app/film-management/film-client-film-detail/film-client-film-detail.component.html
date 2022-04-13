@@ -1,0 +1,69 @@
+<div class="container tai-detail-container">
+  <div class="row movie_details">
+    <div class="col-11 ">
+      <div class="row">
+        <div class="col-6">
+          <img  class="img-fluid" src="{{film.image}}"
+               alt="Girl in a jacket" width="100%">
+        </div>
+        <div class="col-6">
+          <h1 style="padding-left: 10px"><b>{{film.name}}</b></h1>
+          <h3 style="padding-left: 10px">Đạo diễn:{{film.director}}</h3>
+          <span class="test_phim">{{film.version}}</span><span class="time_details"><i class="bi bi-alarm-fill"></i></span><span
+          class="time_details">{{film.duration}}</span>
+          <br>
+          <br>
+          <div class="details_test_one">
+
+            <div>
+              <span><b>Quốc Gia :</b></span> <a>{{film.studio}}</a>
+            </div>
+            <div>
+              <span><b>Diễn Viên :</b></span>
+              <a>{{film.actor}}</a>
+            </div>
+            <div>
+              <span><b>Ngày Bắt Đầu  :</b></span> <a>{{film.startDate}}</a>
+            </div>
+            <div>
+              <span><b>Ngày Kết Thúc  :</b></span> <a>{{film.endDate}}</a>
+            </div>
+            <div>
+              <span><b>Thể Loại :</b></span> <a>{{film.filmType.name}}</a>
+            </div>
+            <div >
+              <iframe class="ratio ratio-16x9"  height="385"  [src]="transform()"  title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div>
+              <button type="button" class="btn_click" [routerLink]="['/']">Quay Lại</button>
+              <button type="button" class="btn_click">Đặt Vé</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <h3>Nội Dung Phim</h3>
+        <span style="color: #f26b38; font-size: 20px">-----------------------</span>
+        <br>
+        <p>
+          Do Matt Reeves làm đạo diễn, đây được dự đoán là phần phim đen tối chưa từng có về Người Dơi.
+        </p>
+        <p>
+          Tay giết người hàng loạt – The Ridder (Paul Dano) sẽ là kẻ thù nguy hiểm hàng đầu của Batman ở phần
+          phim sắp tới. Tên xấu xa này bị cảnh sát James Gordon và đồng đội bắt giữ đã lâu. Thế nhưng, hóa ra
+          việc nhốt gã sau song sắt chỉ khiến The Ridder phiền phức hơn với Đấng. Penguin (Colin Farrell) thể
+          hiện là kẻ thủ ác thích trực tiếp tạo ra hỗn loạn, muốn đối đầu Batman hơn là chỉ đạo gián tiếp theo
+          cách The Ridder thực hiện.
+
+        </p>
+        <p>
+          Đặc biệt, phần này sẽ tập trung khá nhiều vào mối quan hệ của Batman và Catwoman (Zoë Kravitz). Nàng
+          Mèo xuất hiện rất nhiều trong trailer. giữa cô và Batman dường như có sự đồng cảm sâu sắc.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</div>

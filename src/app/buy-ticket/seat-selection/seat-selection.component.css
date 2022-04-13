@@ -1,0 +1,247 @@
+/*Root*/
+:root {
+  --pj-yellow: #F2BB16;
+  --pj-bright-orange: #fc7d0d;
+  --pj-dark-orange: #ff530d;
+  --pj-light-grey: #F2F2F2;
+  --pj-black: #0D0D0D;
+  --pj-grey: #43464B;
+}
+* {
+  box-sizing: inherit;
+  font-family: 'Nunito', sans-serif;
+}
+
+html {
+  font-size: 14px;
+  color: var(--pj-black) !important;
+
+}
+
+a {
+  color: var(--pj-black) !important;
+}
+
+.seat_selection_wrapper {
+  padding-bottom: 160px;
+}
+/*Top Banner*/
+.carousel-item {
+  max-height: 200px !important;
+}
+
+.carousel-item img {
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/*Seat-Choosing*/
+.seat_choosing_title {
+  font-weight: 600;
+}
+
+.seat_map_wrapper {
+  width: 100%;
+  background-color: rgba(241, 241, 241, 0.47);
+  border-radius: 8px;
+}
+
+.screen_wrapper {
+  max-height: 300px;
+  max-width: 100%;
+}
+
+#screen {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.column_title_item {
+  height: 70px;
+  width: 40px;
+  margin-top: 8px;
+  margin-left: 20px;
+}
+
+.column_title_item_content {
+  height: 40px;
+  width: 40px;
+  padding: 20px 0;
+  font-weight: 700;
+}
+
+
+.row_title_item_content {
+  height: 30px;
+  width: 40px;
+  margin: 20px 0;
+  font-weight: 700;
+}
+
+.row_title_item {
+  flex: 0 0 10%;
+
+}
+
+.seat_icon {
+  height: 40px;
+  width: 40px;
+  background-color: white;
+  margin: 20px 0;
+  border-radius: 2px 2px 10px 10px;
+  /*flex: 1 0 10%;*/
+}
+
+.seat_item {
+  flex: 0 0 10%;
+}
+
+/*Order Detail*/
+.order_detail_position{
+  position: sticky;
+  top: 100px;
+  margin-top: 66px;
+}
+
+.order_detail_wrapper {
+  background-color: #F2F2F2;
+  border-radius: 8px;
+}
+
+.order_detail_choosing_seat {
+  border-bottom: 1px solid #bebebe;
+}
+.order_detail_title {
+  color: #ff530d!important;
+  background-color: #f3ec78;
+  background-image: linear-gradient(135deg, var(--pj-dark-orange), var(--pj-bright-orange));
+  background-size: 100%;
+  -webkit-background-clip: text!important;
+  -webkit-text-fill-color:transparent;
+  font-weight: 600;
+}
+
+.order_detail_ticket {
+  line-height: 0;
+}
+
+.quantity_btn {
+  font-size: 30px;
+  text-align: center;
+  align-content: center;
+}
+
+.order_detail_ticket a:hover {
+  cursor: pointer;
+}
+
+.order_detail_selected_seat {
+  border-bottom: 1px solid #bebebe;
+}
+
+.order_detail_selected_seat_title {
+  font-weight: 600;
+}
+
+.selected_seat_icon {
+  height: 30px;
+  width: 30px;
+  background-color: var(--pj-bright-orange);
+  margin: 20px 0;
+  border-radius: 2px 2px 8px 8px;
+  line-height: 30px;
+  font-weight: 600;
+}
+
+.order_detail_selected_seat_information h5 {
+  font-weight: 400;
+}
+
+.order_detail_promotion {
+  padding: 10px 0 20px 0;
+  border-bottom: 1px solid #bebebe;
+}
+
+.promo_button {
+  border: 2px solid var(--pj-bright-orange)!important;
+  padding: 8px 14px;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.promo_button:hover {
+  color: white!important;
+  background-image: linear-gradient(135deg, var(--pj-dark-orange), var(--pj-bright-orange));
+}
+
+.order_detail_total h3{
+  font-weight: 600;
+}
+
+
+
+.booking_ticket_button {
+  border: 2px solid var(--pj-bright-orange)!important;
+  padding: 8px 140px;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.booking_ticket_button:hover {
+  color: white!important;
+  background-image: linear-gradient(135deg, var(--pj-dark-orange), var(--pj-bright-orange));
+}
+
+.economy_seat {
+  border: 2px solid var(--pj-black);
+}
+
+.common_seat {
+  border: 2px solid #41d282;
+}
+
+.VIP_seat {
+  border: 2px solid #ff2d2d;
+}
+
+.ordered_seat {
+  background-color: #777777;
+}
+
+.selecting_seat {
+  background-image: linear-gradient(135deg, var(--pj-dark-orange), var(--pj-bright-orange));
+  -webkit-background-clip: padding;
+}
+
+/*Combo*/
+
+.attached_service_wrapper {
+  background-color: #F2F2F2;
+  border-radius: 8px;
+}
+.combo_btn {
+  font-size: 30px;
+}
+
+.combo_title {
+  margin-top: 110px;
+  font-weight: 600;
+
+}
+
+/*Seat Animation*/
+.DatTC_active {
+  background-image: linear-gradient(135deg, var(--pj-dark-orange), var(--pj-bright-orange));
+  -webkit-background-clip: padding;
+}
+
+.seat_icon_hover:hover {
+  background-color: rgba(255, 140, 60, 0.66);
+  cursor: pointer;
+}
+
+
+
+

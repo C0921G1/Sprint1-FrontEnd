@@ -1,0 +1,264 @@
+body {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 14px;
+  background: white;
+}
+
+.form_wrapper {
+  background: #efefef;
+  width: 500px;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 25px;
+  position: relative;
+  z-index: 1;
+  border-top: 5px solid #D94711;
+}
+
+.form_wrapper .title_container {
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+.form_wrapper label {
+  font-size: 12px;
+}
+
+.form_wrapper .row {
+  margin: 10px -15px;
+}
+
+.form_wrapper .input_field {
+  position: relative;
+  margin-bottom: 20px;
+  -webkit-animation: bounce 0.6s ease-out;
+  animation: bounce 0.6s ease-out;
+}
+
+.form_wrapper .input_field > span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #333;
+  height: 100%;
+  border-right: 1px solid #ccc;
+  text-align: center;
+  width: 30px;
+}
+
+.form_wrapper .input_field > span > i, .form_wrapper .textarea_field > span > i {
+  padding-top: 10px;
+}
+
+.form_wrapper input[type="text"], .form_wrapper input[type="email"], .form_wrapper input[type="date"], .form_wrapper input[type="password"] {
+  width: 100%;
+  padding: 8px 10px 9px 35px;
+  height: 35px;
+  border: 1px solid #333333;
+  box-sizing: border-box;
+  outline: none;
+  border-radius: 5px;
+
+}
+
+.form_wrapper input[type="text"]:hover, .form_wrapper input[type="email"]:hover, .form_wrapper input[type="date"]:hover, .form_wrapper input[type="password"]:hover {
+  background: #fafafa;
+}
+
+.form_wrapper input[type="text"]:focus, .form_wrapper input[type="email"]:focus, .form_wrapper input[type="date"]:focus, .form_wrapper input[type="password"]:focus {
+
+  box-shadow: 0 0 2px 1px rgba(255, 169, 0, 0.5);
+  border: 1px solid #D94711;
+  background: #fafafa;
+}
+
+.form_wrapper input[type="submit"], .form_wrapper input[type="button"] {
+  background: #D94711;
+  height: 35px;
+  width: 100%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.form_wrapper input[type="submit"]:hover ,.form_wrapper input[type="button"]:hover {
+  background: #e1a70a;
+}
+
+@media (max-width: 600px) {
+  .form_wrapper .col_half {
+    width: 100%;
+    float: none;
+  }
+
+  .bottom_row .col_half {
+    width: 50%;
+    float: left;
+  }
+
+  .form_container .row .col_half.last {
+    border-left: none;
+  }
+
+  .remember_me {
+    padding-bottom: 20px;
+  }
+}
+
+
+.form_wrapper a {
+  display: block;
+  text-decoration: none;
+  display: block;
+  position: relative;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.form_wrapper a:hover {
+  color: #fff;
+}
+
+.bi::before {
+  line-height: 2.5;
+}
+
+
+.login100-social-item {
+  font-size: 25px;
+  color: #fff;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.login100-social-item:hover {
+  color: #fff;
+  background-color: #333333;
+}
+
+.bg1 {
+  background-color: #3b5998
+}
+
+.bg3 {
+  background-color: #ea4335
+}
+
+.flex-c-m {
+  /*display: -webkit-box;*/
+  /*display: -webkit-flex;*/
+  /*display: -moz-box;*/
+  /*display: -ms-flexbox;*/
+  display: flex;
+  justify-content: center;
+  /*-ms-align-items: center;*/
+  /*align-items: center;*/
+}
+
+.fa {
+  top: 7px;
+  content: "\f09a";
+  position: relative;
+  font-size: 32px;
+}
+
+.or {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+
+/* Customize the label (the container) */
+.container-check {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 180px;
+}
+
+/* Hide the browser's default checkbox */
+.container-check input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  border-color: #fff;
+  width: fit-content !important;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+/* On mouse-over, add a grey background color */
+.container-check:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a background */
+.container-check input:checked ~ .checkmark {
+  background-color: #D94711;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container-check input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container-check .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  text-align: center;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.tu_css_i{
+  margin-top: 11px;
+  margin-left: 2px;
+}
+
+
+

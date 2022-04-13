@@ -1,0 +1,27 @@
+.feeds{
+  font-size: 14px;
+}
+.btn{
+  background-color: white;
+  margin: auto;
+  width: 230px;
+  /*margin-left: 60px;*/
+}
+.time{
+  font-size: 11px;
+  color: dimgrey;
+}
+.bar{
+  background: rgb(255,115,0);
+  /*position: fixed;*/
+  overflow-x: scroll;
+  height: 770px;
+}
+.data{
+  position: absolute ;
+  right: 0;
+  /*padding-left: 20px;*/
+}
+h2{
+  margin-left: 17px;
+}

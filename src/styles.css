@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+/*.mat-dialog-container {*/
+/*  padding: 0 !important;*/
+
+/*}*/
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #FFFFFF;
+}
+
+.transparentSpin .mat-dialog-container{
+  background: transparent !important;
+  max-width: none !important;
+  box-shadow: none;
+
+}
+

@@ -1,0 +1,358 @@
+<div class="myContent ">
+  <div class="row">
+    <div class="col-md-4 ">
+      <div class="nameSideTitle">
+
+        <div class="avatar">
+          <img [src]="imageThis" class="img-fluid" alt="avt">
+
+        </div>
+
+        <div class="nameSideBody">
+          <div class="form-group row">
+            <div class="col-md-5  fw-bold">Tài khoản</div>
+            <div class="col-md-7 text-wrap wordBreak">
+              {{memberUser}}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-5  fw-bold">Level</div>
+            <div class="col-md-7 level">
+              <div *ngIf="currentMemberPoint < 200"> member</div>
+              <div *ngIf="currentMemberPoint >499 && currentMemberPoint<=799"> Vip</div>
+              <div *ngIf="currentMemberPoint > 799"> V vip</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-5  fw-bold">Điểm tích lũy</div>
+            <div class="col-md-7">
+              {{currentMemberPoint}}
+            </div>
+          </div>
+          <div class=" row">
+            <div class="col-12">
+              <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                            aria-expanded="false" aria-controls="flush-collapseOne">
+                      Đổi mật khẩu
+                    </button>
+                  </h2>
+                  <div id="flush-collapseOne" class="accordion-collapse collapse"
+                       aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div>
+                      <form [formGroup]="changePasswordForm" (ngSubmit)="confirmChange()">
+
+                        <div> Nhập mật khẩu cũ<span> <input type="password"
+                                                            formControlName="oldPass"
+                                                            class="myFormInput"></span>
+
+                          <div *ngIf="!oldPass.valid && (oldPass.dirty )">
+                            <div [hidden]="!oldPass.errors.required">
+                              <p class="text-danger">
+                                Mật khẩu cũ không được bỏ trống.
+                              </p>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div formGroupName="pwGroup">
+
+                          <div> Nhập mật khẩu mới <span> <input type="password" formControlName="newPassword"
+                                                                class="myFormInput"></span>
+                            <div *ngIf="!newPassword.valid && (newPassword.dirty )">
+                              <div [hidden]="!newPassword.errors.required">
+                                <p class="text-danger"> Mật khẩu mới không được bỏ trống.</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div> Xác nhận mật khẩu mới<span><input type="password" formControlName="confirmPassword"
+                                                                  class="myFormInput"></span>
+
+                            <div *ngIf="!confirmPassword.valid && (confirmPassword.dirty )">
+                              <div [hidden]="!confirmPassword.errors.required">
+                                <p class="text-danger"> Xác nhận mật khẩu không được bỏ trống.</p>
+                              </div>
+                            </div>
+
+                            <div [hidden]="!changePasswordForm.controls.pwGroup.hasError('passwordnotmatch')">
+                              <p class="text-danger"> Xác nhận mật khẩu mới không khớp.</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <button [hidden]="changePasswordForm.invalid" class="myButton ">Xác nhận</button>
+                        </div>
+                      </form>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+      </div>
+    </div>
+    <div class="col-md-8 ">
+      <div class="contentBody">
+        <div>
+          <div class="contentTitle">
+            Thông tin tài khoản
+          </div>
+          <div class="centerer">
+
+            <form [formGroup]="infoForm" (ngSubmit)="submit()" novalidate>
+              <input type="hidden" class="myFormInput" formControlName="account">
+
+              <div class="form-group row">
+                <div class="col-md-3  fw-bold">Cập nhật ảnh đại diện</div>
+                <div class="col-md-9">
+                  <label for="image" class="myLabel">
+                    Chọn file
+
+                  </label>
+                  <input type="file" id="image" (change)="showPreview($event)" style="visibility: hidden">
+                </div>
+              </div>
+              <!--              <input type="hidden" class="myFormInput" formControlName="wardId">-->
+              <div class="form-group row">
+                <div class="col-md-3  fw-bold">Họ tên</div>
+                <div class="col-md-9">
+                  <input type="text" class="myFormInput" formControlName="name">
+                  <div *ngIf="!name.valid && (name.dirty ) || name.errors">
+                    <div [hidden]="!name.errors.pattern">
+                      <p class="text-danger">
+                        Họ tên phải viết hoa chữ cái đầu,
+                        không được chứa số hoặc các ký tự đặc biệt.
+                      </p>
+                    </div>
+                    <div [hidden]="!name.errors.required">
+                      <p class="text-danger"> Họ tên không được bỏ trống.</p>
+                    </div>
+                    <div [hidden]="!name.errors.minLength || !name.errors.maxLength">
+                      <p class="text-danger"> Họ tên phải từ 1 đến không quá 50 ký tự.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-3  fw-bold">Ngày sinh</div>
+                <div class="col-md-9">
+                  <input type="date" class="myFormInput" formControlName="dateOfBirth"
+                         [value]="infoForm.value.dateOfBirth">
+
+                  <div *ngIf="!dateOfBirth.valid &&  (dateOfBirth.dirty) ">
+                    <div [hidden]="!dateOfBirth.errors.required">
+                      <p class="text-danger">Vui lòng chọn ngày sinh.</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-3  fw-bold">Giới tính</div>
+                <div class="col-md-9">
+                  <label>
+                    <input formControlName="gender" [checked]="memberGender == 1" type="radio"
+                           [value]="1"
+                           name="gender">
+                  </label> Nam
+                  <label>
+                    <input formControlName="gender" [checked]="memberGender !== 1" type="radio"
+                           [value]="0"
+                           name="gender">
+                  </label> Nữ
+                  <div *ngIf="!gender.valid || gender.errors">
+                    <div [hidden]="!gender.errors.required">
+                      <p class="text-danger">Vui lòng chọn giới tính.</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="form-group row">
+                <div class="col-md-3  fw-bold">Email</div>
+                <div class="col-md-9">
+                  <input type="email" class="myFormInput" formControlName="email">
+                  <div *ngIf="!email.valid && (email.dirty )">
+                    <div [hidden]="!email.errors.pattern">
+                      <p class="text-danger">
+                        Sai định dạng email. Ex: c09cinema@gmail.com
+                      </p>
+                    </div>
+                    <div [hidden]="!email.errors.required">
+                      <p class="text-danger"> Email không được bỏ trống.</p>
+                    </div>
+                    <div [hidden]="!email.errors.minLength || !email.errors.maxLength">
+                      <p class="text-danger"> Email phải từ 10 đến 40 ký tự.</p>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-md-3  fw-bold">CMND</div>
+                <div class="col-md-9">
+                  <input type="text" class="myFormInput" formControlName="identityNumber">
+                  <div *ngIf="!identityNumber.valid && (identityNumber.dirty ) || identityNumber.errors">
+                    <div [hidden]="!identityNumber.errors.pattern">
+                      <p class="text-danger">
+                        Chứng minh nhân dân phải từ 9 đến 10 số.
+                      </p>
+                    </div>
+                    <div [hidden]="!identityNumber.errors.required">
+                      <p class="text-danger"> Chứng minh nhân dân không được bỏ trống.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-md-3  fw-bold">Số điện thoại</div>
+                <div class="col-md-9">
+                  <input type="text" class="myFormInput" formControlName="phone">
+                  <div *ngIf="!phone.valid && (phone.dirty) || phone.errors">
+                    <div [hidden]="!phone.errors.pattern">
+                      <p class="text-danger">
+                        Sai định dạng số điện thoại, phải có 10 số và có 0 đứng đầu. Ex: 0912345678
+                      </p>
+                    </div>
+                    <div [hidden]="!phone.errors.required">
+                      <p class="text-danger"> Số điện thoại không được bỏ trống.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-md-3  fw-bold">Thành phố:</div>
+                <div class="col-md-9">
+                  <select id="city" name="city" formControlName="city" class="myFormInput">
+
+                    <option *ngFor="let city of cityList" [ngValue]="city"
+                            [selected]="infoForm.controls.city.value?.id == city.id">{{city.name}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class=" row">
+                <div class="col-12 d-flex flex-row-reverse">
+
+                  <button class="myButton margin_left_10 " type="submit" [hidden]="infoForm.invalid">Cập nhật</button>
+                  <input class="myButton" type="reset" value="Xóa tất cả">
+
+                  <!--                  <input class="myButton" type="button" value="test" (click)="findInvalidControls()">-->
+
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="contentBody">
+        <div class="contentTitle">
+          <div *ngIf="searchType ==0">Lịch sử cộng điểm</div>
+          <div *ngIf="searchType ==1">Lịch sử dùng điểm</div>
+        </div>
+
+        <div class="centerer">
+          <form [formGroup]="gainedHistoryForm" (ngSubmit)="searchGainedHistory()">
+            <div class="form-group row">
+              <div class="text-center col-md-6">
+                <label for="startdate" class="fw-bold">Từ ngày</label>
+                <input id="startdate" type="date" class="myInput ms-2" formControlName="startDate">
+              </div>
+              <div class="text-center col-md-6">
+                <label for="enddate" class="fw-bold">Đến ngày</label>
+                <input id="enddate" type="date" class="myInput ms-2" formControlName="endDate">
+              </div>
+            </div>
+            <div class=" form-group row">
+              <div style="text-align: center" class="col-6">
+                <label>
+                  <input formControlName="typeHistory" type="radio" class="myButton" value="0" [checked]="searchType==0"
+                         (change)="setDefault($event)">
+                </label> Lịch sử cộng điểm
+              </div>
+              <div style="text-align: center" class="col-6">
+                <label>
+                  <input formControlName="typeHistory" type="radio" class="myButton" value="1" [checked]="searchType==1"
+                         (change)="setDefault($event)">
+                </label> Lịch sử dùng điểm
+              </div>
+              <div class="col-12">
+                <button style="width: 50%; display: block; margin: 40px auto" class="p-2 bd-highlight myButton "
+                        type="submit">Tìm kiếm
+                </button>
+              </div>
+            </div>
+
+          </form>
+
+          <div class="form-group row">
+            <table class="mytable table table-striped table-hover ">
+              <tr>
+                <th>Ngày tạo</th>
+                <th>
+                  <div *ngIf="searchType ==0">Tên phim</div>
+                  <div *ngIf="searchType ==1">Mã giảm giá</div>
+                </th>
+                <th>
+                  <div *ngIf="searchType ==0">Điểm cộng</div>
+                  <div *ngIf="searchType ==1">Điểm dùng</div>
+                </th>
+              </tr>
+              <tr *ngIf="totalPages == 0">
+                <td colspan="3">
+                  <div>
+                    <p class="text-center">   {{emtyMgs}} </p>
+
+                  </div>
+                </td>
+              </tr>
+              <tr *ngFor="let t of gainedPointPage">
+                <td>{{t?.transactionalDate |  date: 'dd/MM/yyyy'}}</td>
+                <td>
+                  <div *ngIf="searchType ==0">{{t.showTime.film.name}}</div>
+                  <div *ngIf="searchType ==1">{{t.ticketStatus}}</div>
+                </td>
+                <td>
+                  <div *ngIf="searchType ==0">{{t.pointGained}}</div>
+                  <div *ngIf="searchType ==1">{{t.pointUsed}}</div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div>
+
+            <!--  Phân trang-->
+            <div class="row" *ngIf="totalPages !=0">
+              <div class="col-lg-12 float-end">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination justify-content-end">
+                    <li *ngIf="gainedPage != 0" class="page-item"><a class="myButton" (click)="backPage()">Trước</a>
+                    </li>
+                    <li class="page-item myButton1"> {{gainedPage + 1}} / {{totalPages}}</li>
+                    <li *ngIf="gainedPage != totalPages-1" class="page-item"><a class="myButton"
+                                                                                (click)="nextPage()">Sau</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

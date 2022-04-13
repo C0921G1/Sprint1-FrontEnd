@@ -1,0 +1,207 @@
+<div class="form_wrapper" style="margin-bottom: 130px; margin-top: 30px">
+  <div class="form_container">
+    <div class="title_container">
+      <h3>Đăng ký thành viên</h3>
+    </div>
+    <div class="row clearfix">
+
+      <form [formGroup]="memberForm" (ngSubmit)="onSubmit()">
+        <!--img-->
+
+        <div class="input_field">
+          <img style="width: 200px;height: 200px" alt="avatar" [src]="imageThis">
+          <label for="image" class="btn" style="font-weight: 500;text-decoration: underline">Thêm ảnh đại diện</label>
+
+          <input id="image" type="file" class="form-control-file" style="visibility:hidden;" (change)="showPreview($event)" />
+          <div style="color: red"
+               *ngIf="memberForm.get('image').hasError('required') && submitted">Ảnh không được bỏ trống.</div>
+          <!--                    <div style="color: red">Vui lòng thêm ảnh</div>-->
+        </div>
+
+        <!--name-->
+        <div class="input_field" >
+          <label>Họ và Tên <span style="color: red">*</span></label>
+
+          <input type="text" name="name" placeholder="Họ và Tên" formControlName="name" ngModel maxlength="50" required/>
+          <div style="color: red"
+               *ngIf="memberForm.get('name').hasError('required') && submitted ">Bạn vui lòng không để trống mục tên.</div>
+          <div style="color: red"
+               *ngIf="memberForm.get('name').hasError('pattern') && submitted">Tên không được phép có số hoặc ký tự đặc biệt và phải viết hoa chữ cái đầu.</div>
+          <div style="color: red"
+               *ngIf="memberForm.get('name').hasError('maxLength') && submitted">Tối thiểu 1 ký tự và tối đa 50 ký tự.</div>
+          <!--          <div style="color: red">Bạn vui lòng nhập tên theo đinh dạng: Nguyễn Văn A </div>-->
+          <!--          <div style="color: red">Bạn vui lòng không để trống mục tên</div>-->
+        </div>
+
+
+        <!--phone & gender-->
+
+        <div class="row clearfix">
+          <div class="col_half">
+
+            <div class="input_field">
+              <label>Số điện thoại <span style="color: red">*</span></label>
+              <input type="text" name="phone" placeholder="Số điện thoại" formControlName="phone"/>
+            </div>
+            <div style="color: red"
+                 *ngIf="memberForm.get('phone').hasError('pattern') && submitted">Bạn vui lòng nhập số điện thoại theo đúng đinh dạng: +84-xxxxxxxxx.</div>
+            <div style="color: red"
+                 *ngIf="memberForm.get('phone').hasError('required') && submitted">Bạn vui lòng không để trống mục số điện thoại.</div>
+          </div>
+          <div class="input_field select_option col_half">
+            <label>Giới tính <span style="color: red">*</span></label>
+            <select formControlName="gender">
+              <option>Giới tính</option>
+              <option value="0">Nam</option>
+              <option value="1">Nữ</option>
+            </select>
+            <div style="color: red"
+                 *ngIf="memberForm.get('gender').hasError('required') && submitted">Bạn vui lòng chọn giới tính.</div>
+            <!--            <div style="color: red">Bạn vui lòng chọn giới tính</div>-->
+          </div>
+
+        </div>
+
+
+        <!--email-->
+
+        <div class="input_field">
+          <label>Email <span style="color: red">*</span></label>
+          <input type="email" name="email" placeholder="Email" formControlName="email" required/>
+          <div style="color: red"
+               *ngIf="memberForm.get('email').hasError('required') && submitted">Bạn vui lòng không để trống mục email.</div>
+          <div style="color: red"
+               *ngIf="memberForm.get('email').hasError('pattern') && submitted">Email phải theo định dạng: email@mail.com.</div>
+          <div style="color: red" id="email-duplicate"></div>
+          <!--          <div style="color: red">Bạn vui lòng không để trống mục email</div>-->
+          <!--          <div style="color: red">Bạn vui lòng theo định dạng: email@mail.com </div>-->
+        </div>
+
+        <!--password-->
+
+        <div class="row clearfix" formGroupName="passwordFormGroup">
+          <div class="col_half">
+            <div class="input_field">
+              <label>Mật khẩu <span style="color: red">*</span></label>
+              <input type="password" name="password" placeholder="Mật Khẩu" formControlName="password" required/>
+            </div>
+            <div style="color: red"
+                 *ngIf="memberForm.get('passwordFormGroup').get('password').hasError('required') && submitted">Bạn vui lòng không để trống mục mật khẩu.</div>
+            <div style="color: red"
+                 *ngIf="memberForm.get('passwordFormGroup').get('password').hasError('pattern') && submitted">Bạn vui nhập mật khẩu ít nhất 6 ký tự, ít nhất 1 ký tự chữu và 1 ký tự số.</div>
+            <!--            <div style="color: red">Bạn vui lòng không để trống mục mật khẩu</div>-->
+            <!--            <div style="color: red">Vui lòng điền mật khẩu ít nhất 6 ký tự</div>-->
+          </div>
+          <div class="col_half">
+
+            <div class="input_field">
+              <label>Nhập lại mật khẩu <span style="color: red">*</span></label>
+              <input type="password" name="confirmPassword" placeholder="Nhập lại Mật Khẩu" formControlName="confirmPassword" required/>
+            </div>
+            <div style="color: red"
+                 *ngIf="memberForm.get('passwordFormGroup').get('password').hasError('required') && submitted">Bạn vui lòng không để trống mục nhập lại mật khẩu</div>
+            <!--            <div style="color: red">Bạn vui lòng không để trống mục nhập lại mật khẩu</div>-->
+            <div style="color: red" *ngIf="memberForm.hasError('notMatch',['passwordFormGroup']) && (submitted)">Vui lòng nhập đúng mật khẩu </div>
+          </div>
+
+        </div>
+
+        <!--city+district-->
+
+        <div class="row clearfix">
+          <div class="input_field select_option col_half">
+            <label>Tỉnh/Thành phố <span style="color: red">*</span></label>
+            <select name="cityThis" id="cityThis" formControlName="cityThis" (change) ="getCityToDistrictNhanNT($event.target.value)" >
+              <option selected disabled value="">Tỉnh / Thành phố</option>
+
+              <option *ngFor="let city of cityList" [value]="city.id">{{city.name}}</option>
+
+            </select>
+            <!--            <div style="color: red">Bạn vui lòng chọn Tỉnh / Thành phố</div>-->
+          </div>
+          <div class="input_field select_option col_half">
+            <label>Quận/Huyện <span style="color: red">*</span></label>
+            <select name="district" id="district" formControlName="district" (change)="getDistrictToWardNhanNT($event.target.value)">
+              <option selected disabled value="">Quận / Huyện</option>
+
+              <option *ngFor="let district of districtList" [value]="district.id">{{district.name}}</option>
+
+            </select>
+
+            <!--                  <div style="color: red">Bạn vui lòng chọn Quận / Huyện</div>-->
+          </div>
+        </div>
+
+        <!--address + ward-->
+        <div class="row clearfix">
+
+          <div class="input_field select_option col_half">
+            <label> Xã/Phường <span style="color: red">*</span></label>
+            <select name="ward" id="ward" formControlName="ward">
+              <option selected disabled value="">Xã / Phường</option>
+              <option *ngFor="let ward of wardList" [ngValue]="ward">{{ward.name}}</option>
+            </select>
+            <div style="color: red"
+                 *ngIf="memberForm.get('ward').hasError('required') && submitted">Bạn vui lòng không để trống mục Phường.</div>
+            <!--            <div style="color: red">Bạn vui lòng chọn Xã / Phường</div>-->
+          </div>
+          <div class="input_field col_half">
+            <label>Địa chỉ <span style="color: red">*</span></label>
+            <input type="text" name="address" placeholder="Địa chỉ" formControlName="address" required/>
+            <div style="color: red"
+                 *ngIf="memberForm.get('address').hasError('required') && submitted">Bạn vui lòng không để trống mục địa chỉ.</div>
+            <!--            <div style="color: red">Vui lòng nhập địa chỉ</div>-->
+          </div>
+
+        </div>
+
+        <!--dayofbirth-->
+
+        <div class="row clearfix">
+          <div class="input_field col_half">
+            <label>Ngày Sinh <span style="color: red">*</span></label>
+            <input type="date" name="dateOfBirth" placeholder="" formControlName="dateOfBirth" required/>
+            <div style="color: red"
+                 *ngIf="memberForm.get('dateOfBirth').hasError('required') && submitted">Bạn vui lòng không để trống mục ngày sinh.</div>
+            <div style="color: red" id="checkAge"></div>
+            <!--          <div style="color: red">Vui lòng chọn ngày sinh theo dạng (dd/mm/yyyy)</div>-->
+          </div>
+
+          <div class="input_field col_half">
+            <label>Chứng minh thư <span style="color: red">*</span></label>
+            <input type="text" name="identityNumber" placeholder="Chứng minh thư" formControlName="identityNumber" required/>
+            <div style="color: red"
+                 *ngIf="memberForm.get('identityNumber').hasError('required') && submitted">Bạn vui lòng không để trống mục chứng minh thư.</div>
+            <!--            <div style="color: red">Vui lòng nhập địa chỉ</div>-->
+          </div>
+
+        </div>
+
+
+        <!-- xác nhận-->
+
+        <div class="input_field checkbox_option">
+
+          <label class="container" for="cb1">Tôi đã đọc và đồng ý với <a class="term" target="_blank"
+                                                                         href="https://www.galaxycine.vn/chinh-sach">Chính
+            sách</a> của chương trình<span style="color: red">*</span>
+            <input type="checkbox" id="cb1" formControlName="check">
+            <div style="color: red" *ngIf="memberForm.get('check').hasError('required') && submitted">Vui lòng xác nhận chính sách</div>
+            <span class="checkmark"></span>
+
+          </label>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 col-lg-6">
+            <input class="button" type="button" [routerLink]="['']" value="Về trang chủ"/>
+          </div>
+          <div class="col-md-12 col-lg-6">
+            <input class="button" type="submit" value="Đăng Ký"/>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

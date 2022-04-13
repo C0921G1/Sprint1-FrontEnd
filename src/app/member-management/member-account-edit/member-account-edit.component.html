@@ -1,0 +1,554 @@
+<div class="container" style="color: #566787;font-family: 'Varela Round', sans-serif">
+  <h2 style="margin-top: 20px;margin-left: 20px;text-align: center">Cập nhật tài khoản thành viên</h2>
+  <hr style="margin-left: 150px; width: 70%">
+</div>
+
+<div class="container" style="margin-bottom: 150px">
+  <form [formGroup]="memberUpdateForm" (ngSubmit)="updateMember()">
+
+    <!--    memberId-->
+    <div class="row mt-3" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2">
+        <div class="row">
+          <div class="col-lg-12 col-xl-12">
+            <label for="id" class="col-form-label fw-bold"
+                   style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Mã
+              thành viên: </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="col-auto">
+          <input type="text" id="id" name="id" class="form-control" formControlName="id" [attr.disabled]="true"
+                 style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4">
+      </div>
+
+    </div>
+
+    <!--    memberName-->
+    <div class="row mt-3" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2">
+        <div class="row">
+          <div class="col-lg-12 col-xl-12">
+            <label for="name" class="col-form-label fw-bold"
+                   style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Họ
+              và tên: </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="col-auto">
+          <input type="text" id="name" name="name" class="form-control" formControlName="name"
+                 style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4">
+      </div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('name').hasError('required') && buttonFLag">
+          Dữ liệu còn trống! Mời bạn nhập vào!
+        </div>
+
+        <div class="mt-2 text-danger" id="name-not-blank"></div>
+
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('name').hasError('pattern') && buttonFLag">
+          Dữ liệu không hợp lệ! Tên không bao gồm số hoặc kí tự đặc biệt!
+        </div>
+
+        <div class="mt-2 text-danger" id="name-pattern"></div>
+
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('name').hasError('minlength') && buttonFLag">
+          Dữ liệu không hợp lệ! Tên ít nhất bao gồm 8 kí tự!
+        </div>
+
+        <div class="mt-2 text-danger" id="name-size"></div>
+
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <!--    memberImage-->
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2">
+        <div class="row">
+          <div class="col-lg-12 col-xl-12">
+            <span class="col-form-label fw-bold"
+                   style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Ảnh
+              đại diện: </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="col-auto">
+          <img [src]="imageThis" alt="" width="80px" height="80px" style="border-radius: 10px">
+
+          <label for="image" class="col-form-label fw-bold"
+                 style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important; cursor: pointer">
+            Click để thay đổi ảnh đại diện</label>
+          <input type="file" id="image" name="image" class="ms-3" style="visibility: hidden" (change)="showPreview($event)">
+
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4">
+      </div>
+
+    </div>
+
+    <!--    memberGender-->
+    <div class="row mt-3" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2">
+        <div class="row">
+          <div class="col-lg-12 col-xl-12">
+            <label class="col-form-label fw-bold"
+                   style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Giới
+              tính: </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-6" style="margin-top: 5px">
+
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="gender" id="inlineRadio1"
+                 value="0" formControlName="gender" [checked]="memberUpdateForm.controls.gender.value == 0"
+                 style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">
+          <label class="form-check-label" for="inlineRadio1">Nam</label>
+        </div>
+
+        <div class="form-check form-check-inline ms-3">
+          <input class="form-check-input" type="radio" name="gender" id="inlineRadio2"
+                 value="1" formControlName="gender" [checked]="memberUpdateForm.controls.gender.value == 1">
+          <label class="form-check-label" for="inlineRadio2">Nữ</label>
+        </div>
+
+      </div>
+
+      <div class="col-lg-4 col-xl-4">
+      </div>
+
+    </div>
+
+    <!--    memberDateOfBirth-->
+    <div class="row mt-3" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2">
+        <div class="row">
+          <div class="col-lg-12 col-xl-12">
+            <label for="dateOfBirth" class="col-form-label fw-bold"
+                   style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Ngày
+              sinh: </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="col-auto">
+          <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control" formControlName="dateOfBirth"
+                 style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4">
+      </div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('dateOfBirth').hasError('required') && buttonFLag">
+          Dữ liệu còn trống! Mời bạn nhập vào!
+        </div>
+
+        <div class="mt-2 text-danger" id="dateOfBirth-not-blank"></div>
+
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('dateOfBirth').hasError('notSuitableAge') && buttonFLag">
+          Thành viên đăng ký phải lớn hơn 16 tuổi hoặc bé hơn 100 tuổi!
+        </div>
+
+        <div class="mt-2 text-danger" id="dateOfBirth-not-suitable"></div>
+
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <!--    memberPhone-->
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2">
+        <div class="row">
+          <div class="col-lg-12 col-xl-12">
+            <label for="phone" class="col-form-label fw-bold"
+                   style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Số
+              điện thoại: </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="col-auto">
+          <input type="text" id="phone" name="phone" class="form-control" formControlName="phone"
+                 style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4">
+      </div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('phone').hasError('required') && buttonFLag">
+          Dữ liệu còn trống! Mời bạn nhập vào!
+        </div>
+
+        <div class="mt-2 text-danger" id="phone-not-blank"></div>
+
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('phone').hasError('pattern') && buttonFLag">
+          Dữ liệu không hợp lệ! Số điện thoại phải tuân theo chuẩn của Việt Nam!
+        </div>
+
+        <div class="mt-2 text-danger" id="phone-pattern"></div>
+
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <!--    memberIdentityNumber-->
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2">
+        <div class="row">
+          <div class="col-lg-12 col-xl-12">
+            <label for="identityNumber" class="col-form-label fw-bold"
+                   style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Số
+              CMND: </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="col-auto">
+          <input type="text" id="identityNumber" name="identityNumber" class="form-control"
+                 formControlName="identityNumber"
+                 style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4">
+      </div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('identityNumber').hasError('required') && buttonFLag">
+          Dữ liệu còn trống! Mời bạn nhập vào!
+        </div>
+
+        <div class="mt-2 text-danger" id="identityNumber-not-blank"></div>
+
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('identityNumber').hasError('pattern') && buttonFLag">
+          Dữ liệu không hợp lệ! Số chứng minh nhân dân phải tuân theo chuẩn quy ước!
+        </div>
+
+        <div class="mt-2 text-danger" id="identityNumber-pattern"></div>
+
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <!--    memberEmail-->
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2">
+        <div class="row">
+          <div class="col-lg-12 col-xl-12">
+            <label for="email" class="col-form-label fw-bold"
+                   style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Email: </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="col-auto">
+          <input type="text" id="email" name="email" class="form-control" [attr.disabled]="true" formControlName="email"
+                 style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4">
+      </div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('email').hasError('required') && buttonFLag">
+          Dữ liệu còn trống! Mời bạn nhập vào!
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('email').hasError('email') && buttonFLag">
+          Dữ liệu không hợp lệ! Email phải tuân theo chuẩn quy ước!
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <!--    memberAddress-->
+    <div class="row mt-3" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2">
+        <div class="row">
+          <div class="col-lg-12 col-xl-12">
+            <label for="address" class="col-form-label fw-bold"
+                   style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Địa
+              chỉ: </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="col-auto">
+          <input type="text" id="address" name="address" class="form-control" formControlName="address"
+                 style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4">
+      </div>
+
+    </div>
+
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2"></div>
+
+      <div class="col-lg-6 col-xl-6">
+
+        <div class="mt-2 text-danger"
+             *ngIf="memberUpdateForm.get('address').hasError('required') && buttonFLag">
+          Dữ liệu còn trống! Mời bạn nhập vào!
+        </div>
+
+        <div class="mt-2 text-danger" id="address-not-blank"></div>
+
+      </div>
+
+      <div class="col-lg-4 col-xl-4"></div>
+
+    </div>
+
+    <!--    memberCity-->
+    <div class="row" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2">
+        <div class="row">
+          <div class="col-lg-12 col-xl-12">
+            <label for="city" class="col-form-label fw-bold"
+                   style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Thành
+              phố: </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-6 mt-1 ">
+        <div class="col-auto ">
+          <select id="city" name="city" formControlName="city" class="form-select"
+                  style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">
+            <option *ngFor="let city of cities" [ngValue]="city"
+                    [selected]="memberUpdateForm.controls.city.value?.id === city.id">{{city.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4">
+      </div>
+
+    </div>
+
+    <!--    memberPoint-->
+    <div class="row mt-2" style="margin-left: 250px">
+
+      <div class="col-lg-2 col-xl-2">
+        <div class="row">
+          <div class="col-lg-12 col-xl-12">
+            <label for="point" class="col-form-label fw-bold"
+                   style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">Điểm
+              thưởng: </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-6">
+        <div class="col-auto">
+          <input type="text" id="point" name="point" class="form-control" formControlName="point" [attr.disabled]="true"
+                 style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;">
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-xl-4">
+      </div>
+
+    </div>
+
+    <div class="row mt-3" style="margin-left: 250px">
+      <div class="col-lg-2 col-xl-2">
+        <div class="row">
+          <div class="col-lg-12 col-xl-12">
+
+          </div>
+        </div>
+      </div>
+      <!--      style="font-family: 'Varela Round', sans-serif !important; font-size: 14px !important; color: black !important;"-->
+      <div class="col-lg-6 col-xl-6 mb-3">
+        <button type="submit" class="btn khanh_btn_update" style="background: #f28123;font-family: 'Varela Round', sans-serif !important;
+                             color: #fff; font-weight: bold; font-size: 0.9rem !important;">Cập nhật
+        </button>
+
+        <a routerLink="/member/list" class="ms-1 text-decoration-none text-dark fw-bold"
+           style="font-family: 'Varela Round', sans-serif !important">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+               class="bi bi-arrow-left-circle-fill ms-5" viewBox="0 0 16 16">
+            <path
+              d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+          </svg>
+          Quay lại trang thành viên!
+        </a>
+
+      </div>
+
+      <div class="col-lg-4 col-xl-4">
+      </div>
+    </div>
+
+  </form>
+
+</div>

@@ -1,0 +1,138 @@
+<!--Film Selection-->
+<div class="DatTC_film_selection_wrapper container-fluid p-0">
+  <!--Top Banner-->
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div style="max-height: 300px" class="carousel-item active" data-bs-interval="1000">
+        <img
+          src="https://koicine.com/wp-content/uploads/2022/03/phim-kinh-di%CC%A3-Vie%CC%A3%CC%82t-Nam-Bo%CC%81ng-De%CC%80.jpg"
+          class="d-block w-100"
+          alt="...">
+      </div>
+      <div style="max-height: 300px" class="carousel-item" data-bs-interval="2000">
+        <img style="position: relative; top: -108px"
+             src="https://assets.fontsinuse.com/static/use-media-items/139/138869/full-2880x1040/6099a63b/wrath-of-man-2880x1040.jpeg"
+             class="d-block w-100" alt="...">
+      </div>
+      <div style="max-height: 300px" class="carousel-item" data-bs-interval="3000">
+        <img style="position: relative; top: -265px"
+             src="https://www.xtrafondos.com/en/descargar.php?id=6116&resolucion=3840x2160"
+             class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <!--End Top Banner-->
+
+  <!--Body-->
+  <!--Header Tittle-->
+  <div class="header row">
+    <div class="col-lg-12 mb-3 ">
+      <ul class="DatTC_header_title my-3 list-unstyled list-group list-group-horizontal  justify-content-center">
+        <li><a id="DatTC_header_title_active" class="text-decoration-none m-3 header_title_item" href="#1">LỊCH CHIẾU
+          THEO PHIM</a></li>
+      </ul>
+    </div>
+  </div>
+  <!--Selection-->
+  <div class="row selection">
+    <!--Film Selection-->
+    <div class="col-10 col-lg-10 col-md-12 col-sm-12 offset-1 offset-lg-1">
+      <label class="mb-3 fs-4 fw-bold" for="DatTC_film_select">Chọn Phim</label>
+      <div id="DatTC_film_select" class="DatTC_film_list mb-3">
+        <ul class="list-unstyled">
+          <li *ngFor="let filmObj of filmList" class="DatTC_film_item">
+            <a class="text-decoration-none DatTC_film_list_link"
+               [class.DatTC_film_active]="filmObj.id == filmCurrentChooseId" (click)="getFilmId(filmObj.id)">
+              <div class="DatTC_film mb-3">
+                <img [src]="filmObj.image"
+                     alt="film_poster">
+                {{filmObj.name}}
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--End Film Selection-->
+  </div>
+  <!--Showtime Selection-->
+  <div id="showTimeSelection" *ngIf="this.filmCurrentChooseId != null" class="col-10 col-lg-10 col-md-12 col-sm-12 offset-1 offset-lg-1">
+    <div class="row m-3 DatTC_showtime_schedule">
+      <h2 class="DatTC_header_title_showtime text-center mt-3 fw-bold">CHỌN SUẤT CHIẾU</h2>
+      <div class="col-lg-2 d-flex">
+        <div class="DatTC_date">
+          <p class="m-0 DatTC_showtime_day"><span class="currentDay">{{this.currentDay}}</span></p>
+          <p class="m-0 DatTC_showtime_date"><span class="currentDate">{{this.currentDate}}</span></p>
+          <p class="m-0 showtime_month"><span class="currentMonth">{{this.currentMonth}}</span></p>
+        </div>
+      </div>
+      <div class="col-lg-10">
+        <ul *ngIf="this.showTimeList.length > 0; else elseBlockCurrent" class="list-unstyled d-flex flex-wrap m-0">
+          <li *ngFor="let showTimeObj of showTimeList" class="DatTC_showtime_hour"><a
+            [class.DatTC_showtime_hour_active]="this.showTimeCurrentChoose === showTimeObj.id"
+            (click)="getShowTimeId(showTimeObj.id)">{{showTimeObj.name}}</a></li>
+        </ul>
+
+        <ng-template #elseBlockCurrent>
+          <p class="noShowTime d-flex justify-content-center align-items-center text-center">{{this.noShowTime}}</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="this.filmCurrentChooseId != null" class="col-10 col-lg-10 col-md-12 col-sm-12 offset-1 offset-lg-1">
+    <div class="row m-3 DatTC_showtime_schedule">
+      <div class="col-lg-2 d-flex">
+        <div class="DatTC_date">
+          <p class="m-0 DatTC_showtime_day"><span class="currentDay">{{this.currentNextDay}}</span></p>
+          <p class="m-0 DatTC_showtime_date"><span class="currentDate">{{this.currentNextDate}}</span></p>
+          <p class="m-0 showtime_month"><span class="currentMonth">{{this.currentNextMonth}}</span></p>
+        </div>
+      </div>
+      <div class="col-lg-10">
+        <ul *ngIf="showTimeListNextDay.length > 0; else elseBlockNextDay" class="list-unstyled d-flex flex-wrap m-0">
+          <li  *ngFor="let showtimeObjNextDate of showTimeListNextDay" class="DatTC_showtime_hour"><a
+            [class.DatTC_showtime_hour_active]="this.showTimeCurrentChoose === showtimeObjNextDate.id"
+            (click)="getShowTimeId(showtimeObjNextDate.id)">{{showtimeObjNextDate.name}}</a></li>
+        </ul>
+          <ng-template #elseBlockNextDay>
+            <p class="noShowTime d-flex justify-content-center align-items-center text-center">{{this.noShowTimeNextDay}}</p>
+          </ng-template>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="this.filmCurrentChooseId != null" class="col-10 col-lg-10 col-md-12 col-sm-12 offset-1 offset-lg-1">
+    <div class="row m-3 DatTC_showtime_schedule">
+      <div class="col-lg-2 d-flex">
+        <div class="DatTC_date">
+          <p class="m-0 DatTC_showtime_day"><span class="currentDay">{{this.currentNextTwoDay}}</span></p>
+          <p class="m-0 DatTC_showtime_date"><span class="currentDate">{{this.currentNextTwoDate}}</span></p>
+          <p class="m-0 showtime_month"><span class="currentMonth">{{this.currentNextTwoMonth}}</span></p>
+        </div>
+      </div>
+      <div class="col-lg-10">
+        <ul *ngIf="this.showTimeListNextTwoDay.length > 0; else elseBlockNextTwoDay" class="list-unstyled d-flex flex-wrap m-0">
+          <li *ngFor="let showtimeObjNextTwoDate of showTimeListNextTwoDay" class="DatTC_showtime_hour"><a
+            [class.DatTC_showtime_hour_active]="this.showTimeCurrentChoose === showtimeObjNextTwoDate.id"
+            (click)="getShowTimeId(showtimeObjNextTwoDate.id)">{{showtimeObjNextTwoDate.name}}</a></li>
+        </ul>
+
+        <ng-template #elseBlockNextTwoDay>
+          <p class="noShowTime d-flex justify-content-center align-items-center text-center">{{this.noShowTimeNextTwoDay}}</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <!--End Showtime Selection-->
+  <a class="DatTC_next-step text-decoration-none"
+     routerLink="/buy-ticket/seat-selection/{{this.showTimeCurrentChoose}}" (click)="nextStep()">Đặt vé&nbsp;&nbsp;<i
+    class="bi bi-ticket-perforated"></i></a>
+</div>
+

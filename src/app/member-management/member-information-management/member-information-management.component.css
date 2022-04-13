@@ -1,0 +1,231 @@
+.myContent {
+  position: relative;
+  width: 75%;
+
+  min-height: 750px;
+  margin: 50px auto 150px auto;
+}
+
+.nameSideTitle {
+
+  box-shadow: -1px 5px 10px #959595;
+  background: #f28123;
+  height: max-content;
+  color: white;
+  margin: 5px;
+
+}
+
+.nameSideBody {
+  color: black;
+  margin: auto;
+  z-index: 10;
+  padding: 25px 25px 40px 25px;
+  background-color: #efefef;
+
+}
+
+.avatar {
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.avatar img {
+  width: 100%;
+  clip-path: circle();
+  margin: 30px auto;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box !important;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+
+.linkItem {
+  border-bottom: solid 2px transparent;
+  margin: 25px auto;
+}
+
+.linkItem:hover {
+  border-bottom: solid 2px white;
+}
+
+.linkItem a {
+  color: white !important;
+}
+
+.contentBody {
+  margin: 5px 5px 30px 5px;
+}
+
+.contentBody {
+  box-shadow: -1px 5px 10px #959595;
+  background-color: #efefef;
+}
+
+.wordBreak {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  word-break: break-all;
+}
+
+.contentTitle {
+  padding: 8px;
+  background: #f28123;
+  color: white;
+  width: 100%;
+  font-weight: bold;
+}
+
+.form-group {
+  margin: 10px auto;
+}
+
+.margin_bottom {
+  margin-bottom: 10px;
+}
+
+.centerer {
+
+  padding: 25px;
+}
+
+.anh_custom-button {
+  padding: 6px 9px;
+  background-color: #f28123 !important;
+  color: white !important;
+}
+
+.anh_custom-button:hover {
+  background: #f2a60d !important;
+}
+
+.myButton1 {
+  padding: 0 12px;
+
+
+}
+
+.myLabel {
+  padding: 5px 12px;
+  margin: 0 0 15px 0;
+cursor: pointer;
+  /*box-shadow: 0 0 12px gray;*/
+  border: solid 1px transparent;
+  background: #f28123;
+  color: white;
+  transition: background-color 400ms, color 400ms;
+}
+
+.myLabel:hover {
+  border: solid 1px #f28123;
+  background-color: white;
+  color: #f28123;
+}
+
+.myButton {
+  padding: 5px 12px;
+  margin: 15px 0;
+
+  /*box-shadow: 0 0 12px gray;*/
+  border: solid 1px transparent;
+  background: #f28123;
+  color: white;
+  transition: background-color 400ms, color 400ms;
+}
+
+.myButton:hover {
+  border: solid 1px #f28123;
+  background-color: white;
+  color: #f28123;
+}
+
+.margin_left_10 {
+  margin-left: 10px;
+}
+
+.mytable th, .mytable th:hover {
+  background-color: #f28123;
+  color: white !important;
+}
+
+.mytable {
+  margin: 25px auto;
+  outline: solid 1px #f28123;
+}
+
+.mytable td, .mytable th {
+  padding: 2px 15px !important;
+}
+
+
+.margin-10 {
+  margin: 10px 0;
+}
+
+
+.level {
+  text-decoration: underline;
+  color: #ff530d;
+}
+
+.quang_cao {
+  margin: 5px;
+  padding-top: 30px;
+}
+
+.accordion-collapse {
+  padding-top: 25px;
+  background: #efefef;
+
+}
+
+.accordion-button {
+  padding: 5px 12px;
+
+  border: solid 1px transparent;
+  background: #f28123 !important;
+  color: white !important;
+  transition: background-color 400ms, color 400ms;
+}
+
+.accordion-button:hover {
+  border: solid 1px #f28123 !important;;
+  background-color: white !important;;
+  color: #f28123 !important;
+}
+
+.accordion-button:focus {
+  outline: white !important;
+}
+
+.myInput {
+  width: 70%;
+  /* max-width: 90%; */
+  padding: 5px;
+  border-radius: 5px;
+  border: solid 1px #3333;
+  margin: 0 10px 10px 0px;
+}
+
+.myInput:focus, .myFormInput:focus {
+  outline: solid 1px #f28123 !important;
+}
+
+
+
+.myFormInput {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  border: solid 1px #3333;
+}
+

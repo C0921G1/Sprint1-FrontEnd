@@ -1,0 +1,516 @@
+<!--Sửa home chặt tay-->
+
+<!-- Carousel Start -->
+<div class="container-fluid p-0 mb-5">
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="w-100" src="assets/img/poster-captian.jpeg" alt="Image">
+        <div class="custom-carousel d-flex flex-column align-items-center justify-content-center">
+          <div class="p-3" style="max-width: 700px;">
+            <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown custom-font-family-h6">Phim
+              Hot</h6>
+            <h1 class="display-3 text-white mb-4 animated slideInDown custom-font-family-slide">Kịch Tính Từng Thước
+              Phim</h1>
+            <a href=""
+               class="custom-background-btn-bold btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft custom-border-none">Đặt
+              Vé</a>
+            <a href=""
+               class="custom-background-btn-white btn btn-light py-md-3 px-md-5 animated slideInRight custom-border-none">Chi
+              Tiết</a>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="assets/img/poster-turning-red.jpg" class="d-block w-100" alt="...">
+        <div class="custom-carousel d-flex flex-column align-items-center justify-content-center">
+          <div class="p-3" style="max-width: 700px;">
+            <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown custom-font-family-h6">Phim
+              Hot</h6>
+            <h1 class="display-3 text-white mb-4 animated slideInDown custom-font-family-slide">Bắt Trọn Từng Khoảnh
+              Khắc</h1>
+            <a href=""
+               class="custom-background-btn-bold btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft custom-border-none">Đặt
+              Vé</a>
+            <a href=""
+               class="custom-background-btn-white btn btn-light py-md-3 px-md-5 animated slideInRight custom-border-none">Chi
+              Tiết</a>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="w-100" src="assets/img/poster-phim-the-batman-2022.jpg" alt="Image">
+        <div class="custom-carousel d-flex flex-column align-items-center justify-content-center">
+          <div class="p-3" style="max-width: 700px;">
+            <h6 class="section-title text-white custom-font-family-h6 mb-3 animated slideInDown">Phim Hot</h6>
+            <h1 class="display-3 text-white mb-4 animated slideInDown custom-font-family-slide">Chìm Đắm Trong Cảm
+              Xúc</h1>
+            <a href=""
+               class="custom-background-btn-bold btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft custom-border-none">Đặt
+              Vé</a>
+            <a href=""
+               class="custom-background-btn-white btn btn-light py-md-3 px-md-5 animated slideInRight custom-border-none">Chi
+              Tiết</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+<!-- Carousel End -->
+
+
+<!-- Booking Start -->
+<div class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
+  <div class="container">
+    <div class="bg-white shadow" style="padding: 35px;">
+      <div class="row g-2">
+        <div class="col-md-10">
+          <div class="row g-2">
+            <div class="col-md-3">
+              <input type="text" placeholder="Tên diễn viên" class="form-control"
+                     style="border-radius: 0; font-family: 'Heebo',sans-serif !important;" [(ngModel)]="actor">
+            </div>
+            <div class="col-md-3">
+              <input type="text" placeholder="Nhập Tên Phim" class="form-control"
+                     style="border-radius: 0; font-family: 'Heebo',sans-serif !important;" [(ngModel)]="name">
+            </div>
+            <div class="col-md-3">
+              <select class="form-select" style="border-radius: 0; font-family: 'Heebo',sans-serif !important;"
+                      [(ngModel)]="statusFilm">
+                <option value="" selected disabled>Tình Trạng Phim</option>
+                <option value="">Phim Đang Chiếu</option>
+                <option value="1">Phim Sắp Chiếu</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select class="form-select" style="border-radius: 0; font-family: 'Heebo',sans-serif !important;"
+                      (click)="getSearchFilmType($event)">
+                <option value="" selected>Thể Loại Phim</option>
+                <option *ngFor="let filmType of filmTypeClientList" [value]="filmType.name"
+                >{{filmType.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <button class="btn custom-login-register w-100 custom-background-btn-bold custom-border-none"
+                  (click)="getListFilmClient()">Tìm Kiếm
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Booking End -->
+
+<!-- Room Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+      <h6 class="section-title text-center custom-text-color1 custom-font-family-h6">Phim Hot</h6>
+      <h1 class="mb-5 custom-font-family-h1">Phim
+        <span *ngIf="!flagStatusFilm" class="custom-text-color1 custom-font-family-span">Đang Chiếu</span>
+        <span *ngIf="flagStatusFilm" class="custom-text-color1 custom-font-family-span">Sắp Chiếu</span>
+      </h1>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s" *ngFor="let film of filmClientList">
+        <div class="room-item shadow rounded overflow-hidden">
+          <div class="position-relative">
+            <a [routerLink]="['/film/detail-client/'+film.id]">
+              <img class="custom-img-fluid custom-img-size" src="{{film.image}}" alt="">
+            </a>
+          </div>
+          <div class="p-4 mt-2">
+            <div class="d-flex justify-content-between mb-3 custom-film-name">
+              <h5 class="mb-0 custom-font-family-h5 text-uppercase">{{film.name}}</h5>
+            </div>
+            <div class="d-flex mb-3">
+              <small class="border-end me-3 pe-3"><i class="bi bi-badge-8k custom-text-color1 me-2"></i>8K</small>
+              <small class="border-end me-3 pe-3"><i class=" bi bi-badge-4k custom-text-color1 me-2"></i>4K</small>
+              <small><i class="bi bi-badge-hd custom-text-color1 me-2"></i>HD</small>
+            </div>
+            <div class="d-block" style=" line-height: 0 !important;">
+              <div class="d-flex"><p class="mb-lg-0 fw-bold custom-font-family-p-list-film">Thời lượng: </p>
+                <p class="mb-lg-0 custom-w-space custom-font-family-p-list-film-1">{{film.duration}} phút</p></div>
+              <div class="d-flex"><p class="mb-lg-0 fw-bold custom-font-family-p-list-film">Khởi chiếu: </p>
+                <p class="mb-lg-0 custom-w-space custom-font-family-p-list-film-1">{{film.startDate | date: 'dd-MM-yyyy'}}</p></div>
+              <div style=" min-height: 50px !important;">
+                <span class="mb-lg-0 fw-bold custom-font-family-p-list-film">Thể loại:</span>
+                <span class="mb-lg-0 custom-w-space custom-font-family-p-list-film-1">{{film.filmTypeNew}}</span>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between" style="margin-top: 8px">
+              <a class="btn btn-sm custom-background-btn-bold rounded py-2 px-4 custom-btn-detail"
+                 [routerLink]="['/booking/booking-ticket/'+film.id]" style="border-radius: 0 !important;">Đặt Vé</a>
+              <a class="btn btn-sm btn-dark rounded py-2 px-4 custom-btn-detail custom-detail-btn1"
+                 [routerLink]="['/film/detail-client/'+film.id]" style="border-radius: 0 !important;">Chi Tiết</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row custom-row-see-more" *ngIf="!flagMessageEmpty">
+        <div class="col-lg-8 col-sm-9"></div>
+        <div class="col-lg-4 col-sm-3">
+          <button *ngIf="page != totalPage -1"
+                  class="btn custom-background-btn-bold text-white float-lg-end custom-border-none"
+                  (click)="nextPage()"><span class="me-2">xem thêm</span><i class="fa-solid fa-arrow-right-long"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--      case list isEmpty-->
+    <div *ngIf="flagMessageEmpty === true" class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div id="notfound">
+          <div class="notfound">
+            <div class="notfound-404">
+              <h1>Oops!</h1>
+              <h2>404 - Danh sách phim trống.</h2>
+            </div>
+            <a href="#">Về trang chủ</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Room End -->
+
+
+  <!-- Video Start -->
+  <div class="container-xxl py-5 px-0 wow zoomIn" data-wow-delay="0.1s">
+    <div class="row g-0">
+      <div class="col-md-6 custom-bg-color-header d-flex align-items-center">
+        <div class="p-5">
+          <h6 class="section-title text-start text-white custom-font-family-h6 mb-3">Đề Xuất Phim</h6>
+          <h1 class="text-white mb-4 custom-font-family-h1">SPIDER-MAN: NO WAY HOME</h1>
+          <p class="text-white mb-4 custom-font-family-text">Người Nhện: Không còn nhà là một bộ phim siêu anh hùng năm
+            2021 của Mỹ dựa trên nhân vật Peter Parker của Marvel Comics, do Columbia Pictures và Marvel Studios đồng
+            sản
+            xuất và được phân phối bởi Sony Pictures Releasing..</p>
+          <a href="" class="btn custom-background-btn-bold py-md-3 px-md-5 me-3 text-white custom-btn-detail">Đặt Vé</a>
+          <a href="" class="btn btn-light py-md-3 px-md-5 custom-btn-detail"
+             style="color: #000 !important; background-color: #f9fafb !important;">Chi Tiết</a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="video">
+          <button type="button" class="btn-play" data-bs-toggle="modal"
+                  data-src="https://www.youtube.com/watch?v=cUmpJ2zwfVU&list=RDcUmpJ2zwfVU&start_radio=1"
+                  data-bs-target="#videoModal">
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content rounded-0">
+        <div class="modal-header custom-btn">
+          <h5 class="modal-title" id="exampleModalLabel">Trailer SPIDER-MAN: NO WAY HOME</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- 16:9 aspect ratio -->
+          <div class="ratio ratio-16x9">
+            <iframe width="640" height="360" src="https://www.youtube.com/embed/JfVOs4VSpmA"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Video Start -->
+
+  <!-- Team Start -->
+  <div class="container-xxl py-5">
+    <div class="container">
+      <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h6 class="section-title text-center custom-text-color1 custom-font-family-h6">Nghệ Sĩ</h6>
+        <h1 class="mb-5 custom-font-family-h1">Diễn Viên Của<span class="custom-text-color1 custom-font-family-span"> Tháng</span>
+        </h1>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <div class="rounded shadow overflow-hidden">
+            <div class="position-relative">
+              <img class="img-fluid" src="assets/img/dv-ng-nhen-no-way-home.jpg" alt="" width="100%" height="400">
+              <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                <a class="btn btn-square custom-background-btn-bold mx-1" href="#"><i
+                  class="fab fa-facebook-f text-white"></i></a>
+                <a class="btn btn-square custom-background-btn-bold mx-1" href="#"><i
+                  class="fab fa-twitter text-white"></i></a>
+                <a class="btn btn-square custom-background-btn-bold mx-1" href="#"><i
+                  class="fab fa-instagram text-white"></i></a>
+              </div>
+            </div>
+            <div class="text-center p-4 mt-3">
+              <h5 class="fw-bold mb-0 custom-font-family-h5">Tom Holland</h5>
+              <small style=" font-family: 'Heebo',sans-serif !important">Diễn Viên</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+          <div class="rounded shadow overflow-hidden">
+            <div class="position-relative">
+              <img class="img-fluid" src="assets/img/dv-dieu-nhi.jpg" alt="" width="100%" height="400">
+              <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                <a class="btn btn-square custom-background-btn-bold mx-1" href="#"><i
+                  class="fab fa-facebook-f text-white"></i></a>
+                <a class="btn btn-square custom-background-btn-bold mx-1" href="#"><i
+                  class="fab fa-twitter text-white"></i></a>
+                <a class="btn btn-square custom-background-btn-bold mx-1" href="#"><i
+                  class="fab fa-instagram text-white"></i></a>
+              </div>
+            </div>
+            <div class="text-center p-4 mt-3">
+              <h5 class="fw-bold mb-0 custom-font-family-h5">Diệu Nhi</h5>
+              <small style=" font-family: 'Heebo',sans-serif !important">Diễn Viên</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+          <div class="rounded shadow overflow-hidden">
+            <div class="position-relative">
+              <img class="img-fluid" src="assets/img/dv-phim-batman.jpg" alt="" width="100%" height="400">
+              <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                <a class="btn btn-square custom-background-btn-bold mx-1" href="#"><i
+                  class="fab fa-facebook-f text-white"></i></a>
+                <a class="btn btn-square custom-background-btn-bold mx-1" href="#"><i
+                  class="fab fa-twitter text-white"></i></a>
+                <a class="btn btn-square custom-background-btn-bold mx-1" href="#"><i
+                  class="fab fa-instagram text-white"></i></a>
+              </div>
+            </div>
+            <div class="text-center p-4 mt-3">
+              <h5 class="fw-bold mb-0 custom-font-family-h5">Robert Pattinson</h5>
+              <small style=" font-family: 'Heebo',sans-serif !important">Diễn Viên</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+          <div class="rounded shadow overflow-hidden">
+            <div class="position-relative">
+              <img class="img-fluid" src="assets/img/dv-captain.jpg" alt="" width="100%" height="400">
+              <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                <a class="btn btn-square custom-background-btn-bold mx-1" href="#"><i
+                  class="fab fa-facebook-f text-white"></i></a>
+                <a class="btn btn-square custom-background-btn-bold mx-1" href="#"><i
+                  class="fab fa-twitter text-white"></i></a>
+                <a class="btn btn-square custom-background-btn-bold mx-1" href="#"><i
+                  class="fab fa-instagram text-white"></i></a>
+              </div>
+            </div>
+            <div class="text-center p-4 mt-3">
+              <h5 class="fw-bold mb-0 custom-font-family-h5">Chris Evans</h5>
+              <small style=" font-family: 'Heebo',sans-serif !important">Diễn Viên</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Team End -->
+
+  <!-- About Start -->
+  <div class="container-xxl py-5">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6">
+          <h6 class="section-title text-start custom-text-color1 custom-font-family-h6">Bản Tin</h6>
+          <h1 class="mb-4 custom-font-family-h1">Welcome To <span
+            class="custom-text-color1 custom-font-family-span">C09</span></h1>
+          <p class="mb-4 custom-text-service">Một vài con số thống kê nho nhỏ, nhưng đáng tự hào của rạp C09 tạo nên.
+            Chúng tôi không ngừng phấn đấu để cải thiện dịch vụ và mang lại trải nghiệm tốt nhất cho người dùng. Bên
+            phải
+            là
+            những bộ phim làm mưa làm gió tại C09 CINEMA.</p>
+          <div class="row g-3 pb-4">
+            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
+              <div class="border rounded p-1">
+                <div class="border rounded text-center p-4">
+                  <i class="fa fa-solid fa-couch fa-2x custom-text-color1 mb-2"></i>
+                  <h2 class="mb-1" data-toggle="counter-up">159</h2>
+                  <p class="mb-0" style=" font-family: 'Heebo',sans-serif !important">Phòng chiếu</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
+              <div class="border rounded p-1">
+                <div class="border rounded text-center p-4">
+                  <i class="fa fa-users-cog fa-2x custom-text-color1 mb-2"></i>
+                  <h2 class="mb-1" data-toggle="counter-up">1400</h2>
+                  <p class="mb-0" style=" font-family: 'Heebo',sans-serif !important">Nhân Viên</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.5s">
+              <div class="border rounded p-1">
+                <div class="border rounded text-center p-4">
+                  <i class="fa fa-users fa-2x custom-text-color1 mb-2"></i>
+                  <h2 class="mb-1" data-toggle="counter-up">9000</h2>
+                  <p class="mb-0" style=" font-family: 'Heebo',sans-serif !important">Khách Hàng</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="btn custom-background-btn-bold py-3 px-5 mt-2 text-white custom-login-register" href="">Tìm Hiểu
+            Thêm</a>
+        </div>
+        <div class="col-lg-6">
+          <div class="row g-3">
+            <div class="col-6 text-end">
+              <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s" src="assets/img/phim-da-chieu-1.jpg"
+                   style="margin-top: 25%;">
+            </div>
+            <div class="col-6 text-start">
+              <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s"
+                   src="assets/img/phim-da-chieu-3.jpg">
+            </div>
+            <div class="col-6 text-end">
+              <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s" src="assets/img/anh-phim-ant.jpg">
+            </div>
+            <div class="col-6 text-start">
+              <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s"
+                   src="assets/img/phim-da-chieu-4_.jpg">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- About End -->
+
+  <!-- Service Start -->
+  <div class="container-xxl py-5">
+    <div class="container">
+      <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h6 class="section-title text-center custom-text-color1 custom-font-family-h6">Dịch Vụ</h6>
+        <h1 class="mb-5 custom-font-family-h1">Danh Sách <span
+          class="custom-text-color1 custom-font-family-span">Dịch Vụ</span></h1>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <a class="service-item rounded" href="">
+            <div class="service-icon bg-transparent border rounded p-1">
+              <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                <i class="fa fa-solid fa-glass-water fa-2x custom-text-color1"></i>
+              </div>
+            </div>
+            <h5 class="mb-3 custom-font-family-h5">Giải Khát</h5>
+            <p class="text-body mb-0 custom-text-service">Đồ uống vô cùng đa dạng với nhiều sự lựa chọn như: Coca Cola,
+              Pepsi, 7Up,...
+              Ngoài ra còn có thêm trà sữa cho mọi người thưởng thức cùng các bộ phim.</p>
+          </a>
+        </div>
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+          <a class="service-item rounded" href="">
+            <div class="service-icon bg-transparent border rounded p-1">
+              <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                <i class="fa fa-solid fa-burger fa-2x custom-text-color1"></i>
+              </div>
+            </div>
+            <h5 class="mb-3 custom-font-family-h5">Đồ Ăn Kèm</h5>
+            <p class="text-body mb-0 custom-text-service">Đồ ăn kèm vô cùng đa dạng với nhiều sự lựa chọn như: bổng ngô,
+              bánh ngọt,...</p>
+          </a>
+        </div>
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+          <a class="service-item rounded" href="">
+            <div class="service-icon bg-transparent border rounded p-1">
+              <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                <i class="fa fa-solid fa-comment-dots fa-2x custom-text-color1"></i>
+              </div>
+            </div>
+            <h5 class="mb-3 custom-font-family-h5">Chăm Sóc Khách Hàng</h5>
+            <p class="text-body mb-0 custom-text-service">C09 CINEMA luôn quan tâm đến trải nghiệm người dùng, vì thế
+              chúng tôi
+              thường xuyên đào tạo đội ngũ chăm sắc khách hàng tận tâm.</p>
+          </a>
+        </div>
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+          <a class="service-item rounded" href="">
+            <div class="service-icon bg-transparent border rounded p-1">
+              <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                <i class="fa fa-solid fa-house-signal fa-2x custom-text-color1"></i>
+              </div>
+            </div>
+            <h5 class="mb-3 custom-font-family-h5">Phòng Chiếu</h5>
+            <p class="text-body mb-0 custom-text-service">Hệ thống phòng chiếu đạt chuẩn 5 sao. Với các công nghệ chiếu
+              phim hiện đại nhất
+              hiện nay.
+              Ngoài ra C09 CINEMA còn được công nhận là 1 trong 3 rạp chiếu phim có quy mô lớn nhất Đông Nam Á.</p>
+          </a>
+        </div>
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+          <a class="service-item rounded" href="">
+            <div class="service-icon bg-transparent border rounded p-1">
+              <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                <i class="fa fa-brands fa-connectdevelop fa-2x custom-text-color1"></i>
+              </div>
+            </div>
+            <h5 class="mb-3 custom-font-family-h5">Quy Mô</h5>
+            <p class="text-body mb-0 custom-text-service"> Không chỉ chú trọng tại các thành phố lớn, mỗi năm C09 khai
+              trương
+              từ 5 – 7 rạp tại các tỉnh trải dài trên khắp đất nước.</p>
+          </a>
+        </div>
+        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+          <a class="service-item rounded" href="">
+            <div class="service-icon bg-transparent border rounded p-1">
+              <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                <i class="fa fa-solid fa-ticket fa-2x custom-text-color1"></i>
+              </div>
+            </div>
+            <h5 class="mb-3 custom-font-family-h5">Giá Vé Ưu Đãi</h5>
+            <p class="text-body mb-0 custom-text-service">CGV áp dụng giá vé ưu đãi nhưng chất lượng phòng chiếu với
+              tiêu
+              chuẩn
+              quốc tế dành cho khán giả. Giá vé dao động 45.000 đồng cho ngày thường đến 70.000 đồng dành
+              cho các suất chiếu cuối tuần và dịp lễ Tết.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Service End -->
+
+  <!-- Newsletter Start -->
+  <div class="container newsletter mt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 border rounded p-1">
+        <div class="border rounded text-center p-1">
+          <div class="bg-white rounded text-center p-5">
+            <h4 class="mb-4 custom-font-family-h4">Đăng Kí Nhận Thông Báo <span
+              class="custom-text-color1 custom-font-family-span">Phim Mới</span></h4>
+            <div class="position-relative mx-auto" style="max-width: 400px;">
+              <input class="form-control w-100 py-3 ps-4 pe-5" type="text" placeholder="Nhập Email Của Bạn"
+                     style="border-radius: 0 !important;">
+              <button type="button"
+                      class="btn custom-background-btn-bold custom-btn-detail py-2 px-3 position-absolute top-0 end-0 mt-2 me-2"
+                      style="color: white; border-radius: 0 !important;">Đăng Ký
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Newsletter Start -->
+</div>
