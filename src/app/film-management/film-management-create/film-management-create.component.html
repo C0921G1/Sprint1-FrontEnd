@@ -39,12 +39,12 @@
           </div>
           <div class="mt-2 text-danger"
                *ngIf="formFilm.get('director').hasError('required')&&
-            formFilm.get('director').dirty">
+            submitted">
             Tên nhà sản xuất không được để trống!
           </div>
           <div class="mt-2 text-danger"
                *ngIf="formFilm.get('director').hasError('pattern') &&
-          formFilm.get('director').dirty">
+          submitted">
             Tên nhà sản xuất phải nhập đúng định dạng tên người vd: Nguyen Van Danh,..."
           </div>
 
@@ -60,7 +60,7 @@
           </div>
           <div class="mt-2 text-danger"
                *ngIf="formFilm.get('actor').hasError('required')&&
-            formFilm.get('actor').dirty">
+            submitted">
             Tên diễn viên không được để trống!
           </div>
         </div>
@@ -116,12 +116,12 @@
           </datalist>
           <div class="mt-2 text-danger"
                *ngIf="formFilm.get('studio').hasError('required')&&
-            formFilm.get('studio').dirty">
+            submitted">
             phòng chiếu không được để trống!
           </div>
           <div class="mt-2 text-danger"
                *ngIf="formFilm.get('studio').hasError('pattern')&&
-            formFilm.get('studio').dirty">
+            submitted">
             Phòng chiếu phải đúng định dạng cho trước vd: PC-01
           </div>
         </div>
@@ -136,22 +136,22 @@
           </div>
           <div class="mt-2 text-danger"
                *ngIf="formFilm.get('duration').hasError('required')&&
-            formFilm.get('duration').dirty">
+            submitted">
             Thời lượng phim không được để trống
           </div>
           <div class="mt-2 text-danger"
                *ngIf="formFilm.get('duration').hasError('pattern')&&
-            formFilm.get('duration').dirty">
+            submitted">
             Giá trị nhỏ nhất của thời lượng phim là 10 và lớn nhất là 240
           </div>
           <div class="mt-2 text-danger"
                *ngIf="formFilm.get('duration').hasError('min')&&
-            formFilm.get('duration').dirty">
+            submitted">
             Giá trị nhỏ nhất của thời lượng phim là 10 và lớn nhất là 240
           </div>
           <div class="mt-2 text-danger"
                *ngIf="formFilm.get('duration').hasError('max')&&
-            formFilm.get('duration').dirty">
+            submitted">
             Giá trị nhỏ nhất của thời lượng phim là 10 và lớn nhất là 240
           </div>
         </div>
@@ -166,12 +166,12 @@
           </datalist>
           <div class="mt-2 text-danger"
                *ngIf="formFilm.get('version').hasError('required')&&
-            formFilm.get('version').dirty">
+            submitted">
             Phiên bản không được để trống!
           </div>
           <div class="mt-2 text-danger"
                *ngIf="formFilm.get('version').hasError('pattern')&&
-            formFilm.get('version').dirty">
+            submitted">
             Phiên bản phải đúng định dạng cho trước vd: 2D
           </div>
         </div>
@@ -185,7 +185,7 @@
           </div>
           <div class="mt-2 text-danger"
                *ngIf="formFilm.get('trailer').hasError('required')&&
-            formFilm.get('trailer').dirty">
+            submitted">
             Trailer không được để trống!
           </div>
 
@@ -213,7 +213,7 @@
 
       <div class="form-end">
         <div class="button-holder1">
-          <a [routerLink]="['/film/list-film-test']">
+          <a [routerLink]="['/film/list-manager']">
             <button type="submit"  class="button-holder">Quay Lại</button>
           </a>
         </div>

@@ -23,6 +23,7 @@ export class FilmManagementCreateComponent implements OnInit {
   flag = false;
   flag1 = false;
   flag2 = false;
+  submitted = false;
 
   url: any;
   film: any;
@@ -109,6 +110,8 @@ export class FilmManagementCreateComponent implements OnInit {
 
 // CaHM thêm mới film
   create() {
+    this.submitted = true;
+    if(this.formFilm.valid){
 
     // if để validate img và checkbox
     if (this.filmTypeNew.toString() == '') {
@@ -126,10 +129,7 @@ export class FilmManagementCreateComponent implements OnInit {
       const fileRef = this.storage.ref(nameImg);
 
       this.storage.upload(nameImg, this.selectedImage).snapshotChanges().pipe(
-
-
         finalize(() => {
-
 
 
           //  down link từ firabase và path vào image
@@ -157,14 +157,15 @@ export class FilmManagementCreateComponent implements OnInit {
                   // text: 'thêm đối tượng:' + ,
                 })
               );
-            }, error => {},);
+            }, error => {
+            },);
 
           });
         })
       ).subscribe();
     }
 
-
+  }
   }
 
 

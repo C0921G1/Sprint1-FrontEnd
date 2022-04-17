@@ -11,6 +11,7 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
 import {formatDate} from '@angular/common';
 
+
 @Component({
   selector: 'app-member-account-edit',
   templateUrl: './member-account-edit.component.html',
@@ -82,7 +83,7 @@ export class MemberAccountEditComponent implements OnInit {
   id: string;
   buttonFLag: boolean = false;
   errors: any;
-  imageThis = "";
+  imageThis = '';
 
   //show on - off back-end errors
   // nameBlank: boolean = false;
@@ -156,112 +157,205 @@ export class MemberAccountEditComponent implements OnInit {
 
   //update member by id - KhanhLDQ
   updateMember() {
-
     const nameImg = this.getCurrentDateTime() + this.selectedImage.name;
     const fileRef = this.storage.ref(nameImg);
 
     const member = this.memberUpdateForm.value;
     this.buttonFLag = true;
+    console.log(this.selectedImage.name+ "hình update");
+    if (this.selectedImage.name == null) {
+      if (this.memberUpdateForm.valid) {
 
-    this.storage.upload(nameImg, this.selectedImage).snapshotChanges().pipe(
-      finalize(() => {
-        fileRef.getDownloadURL().subscribe((url) => {
+        member.image = this.imageThis;
+        console.log(this.imageThis);
+        console.log("-----------");
+        console.log(member.image);
+        this.memberManagementService.updateMember(this.id, member).subscribe(() => {
+          // console.log('update member successfully!');
 
-          this.memberUpdateForm.patchValue({image: url});
+          this.router.navigateByUrl('/member/list').then(r => Swal.fire(
+            '' + this.id,
+            'Cập nhật thành công!',
+            'success'
+          ));
 
-          member.image = this.memberUpdateForm.value.image;
-          // console.log(member.image);
-          // connect back-end / front-end
-          if (this.memberUpdateForm.valid) {
+          // this.router.navigateByUrl('/member/list').then(r => console.log('back to member list!'));
 
+        }, error => {
 
-            this.memberManagementService.updateMember(this.id, member).subscribe(() => {
-              // console.log('update member successfully!');
+          console.log(error);
+          console.log(error.error);
 
-              this.router.navigateByUrl('/member/list').then(r => Swal.fire(
-                '' + this.id,
-                'Cập nhật thành công!',
-                'success'
-              ));
+          console.log('front-end valid / back-end-error');
 
-              // this.router.navigateByUrl('/member/list').then(r => console.log('back to member list!'));
+          this.errors = error.error;
+          for (let i = 0; i < this.errors.length; i++) {
 
-            }, error => {
+            // console.log(this.errors[i].field);
+            // console.log(this.errors[i].field == "phone");
 
-              console.log(error);
-              console.log(error.error);
+            //need solution to solve a problem - how can show on / off the back-end errors reasonably - KhanhLDQ
 
-              console.log('front-end valid / back-end-error');
+            //field-name
+            if (this.errors[i].field == 'name' && this.errors[i].code == 'NotBlank') {
+              document.getElementById('name-not-blank').textContent = this.errors[i].defaultMessage;
 
-              this.errors = error.error;
-              for (let i = 0; i < this.errors.length; i++) {
+              // const element = document.getElementById("name-not-blank");
+              // if (element) {
+              //   element.textContent = this.errors[i].defaultMessage;
+              //   this.nameBlank = true;
+              // }
+            }
 
-                // console.log(this.errors[i].field);
-                // console.log(this.errors[i].field == "phone");
+            if (this.errors[i].field == 'name' && this.errors[i].code == 'Size') {
+              document.getElementById('name-size').textContent = this.errors[i].defaultMessage;
+            }
 
-                //need solution to solve a problem - how can show on / off the back-end errors reasonably - KhanhLDQ
+            if (this.errors[i].field == 'name' && this.errors[i].code == 'Pattern') {
+              document.getElementById('name-pattern').textContent = this.errors[i].defaultMessage;
+            }
 
-                //field-name
-                if (this.errors[i].field == 'name' && this.errors[i].code == 'NotBlank') {
-                  document.getElementById('name-not-blank').textContent = this.errors[i].defaultMessage;
+            //field-phone
+            if (this.errors[i].field == 'phone' && this.errors[i].code == 'Pattern') {
+              document.getElementById('phone-pattern').textContent = this.errors[i].defaultMessage;
+            }
 
-                  // const element = document.getElementById("name-not-blank");
-                  // if (element) {
-                  //   element.textContent = this.errors[i].defaultMessage;
-                  //   this.nameBlank = true;
-                  // }
-                }
+            if (this.errors[i].field == 'phone' && this.errors[i].code == 'NotBlank') {
+              document.getElementById('phone-not-blank').textContent = this.errors[i].defaultMessage;
+            }
 
-                if (this.errors[i].field == 'name' && this.errors[i].code == 'Size') {
-                  document.getElementById('name-size').textContent = this.errors[i].defaultMessage;
-                }
+            //field-address
+            if (this.errors[i].field == 'address' && this.errors[i].code == 'NotBlank') {
+              document.getElementById('address-not-blank').textContent = this.errors[i].defaultMessage;
+            }
 
-                if (this.errors[i].field == 'name' && this.errors[i].code == 'Pattern') {
-                  document.getElementById('name-pattern').textContent = this.errors[i].defaultMessage;
-                }
+            //field-dateOfBirth
+            if (this.errors[i].field == 'dateOfBirth' && this.errors[i].code == 'NotBlank') {
+              document.getElementById('dateOfBirth-not-blank').textContent = this.errors[i].defaultMessage;
+            }
 
-                //field-phone
-                if (this.errors[i].field == 'phone' && this.errors[i].code == 'Pattern') {
-                  document.getElementById('phone-pattern').textContent = this.errors[i].defaultMessage;
-                }
+            if (this.errors[i].field == 'dateOfBirth' && this.errors[i].code == 'dateOfBirth.age') {
+              document.getElementById('dateOfBirth-not-suitable').textContent
+                = 'Thành viên đăng ký phải lớn hơn 16 tuổi học bé hơn 100 tuổi!';
+            }
 
-                if (this.errors[i].field == 'phone' && this.errors[i].code == 'NotBlank') {
-                  document.getElementById('phone-not-blank').textContent = this.errors[i].defaultMessage;
-                }
+            //field-identityNumber
+            if (this.errors[i].field == 'identityNumber' && this.errors[i].code == 'NotBlank') {
+              document.getElementById('identityNumber-not-blank').textContent = this.errors[i].defaultMessage;
+            }
 
-                //field-address
-                if (this.errors[i].field == 'address' && this.errors[i].code == 'NotBlank') {
-                  document.getElementById('address-not-blank').textContent = this.errors[i].defaultMessage;
-                }
+            if (this.errors[i].field == 'identityNumber' && this.errors[i].code == 'Pattern') {
+              document.getElementById('identityNumber-pattern').textContent = this.errors[i].defaultMessage;
+            }
 
-                //field-dateOfBirth
-                if (this.errors[i].field == 'dateOfBirth' && this.errors[i].code == 'NotBlank') {
-                  document.getElementById('dateOfBirth-not-blank').textContent = this.errors[i].defaultMessage;
-                }
-
-                if (this.errors[i].field == 'dateOfBirth' && this.errors[i].code == 'dateOfBirth.age') {
-                  document.getElementById('dateOfBirth-not-suitable').textContent
-                    = 'Thành viên đăng ký phải lớn hơn 16 tuổi học bé hơn 100 tuổi!';
-                }
-
-                //field-identityNumber
-                if (this.errors[i].field == 'identityNumber' && this.errors[i].code == 'NotBlank') {
-                  document.getElementById('identityNumber-not-blank').textContent = this.errors[i].defaultMessage;
-                }
-
-                if (this.errors[i].field == 'identityNumber' && this.errors[i].code == 'Pattern') {
-                  document.getElementById('identityNumber-pattern').textContent = this.errors[i].defaultMessage;
-                }
-
-              }
-            });
-          } else {
-            console.log('invalid info / front-end');
           }
         });
-      })
-    ).subscribe();
+      } else {
+        console.log('invalid info / front-end');
+      }
+    }
 
+    else
+    {
+      this.storage.upload(nameImg, this.selectedImage).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+
+            this.memberUpdateForm.patchValue({image: url});
+
+            member.image = this.memberUpdateForm.value.image;
+            // console.log(member.image);
+            // connect back-end / front-end
+            if (this.memberUpdateForm.valid) {
+
+
+              this.memberManagementService.updateMember(this.id, member).subscribe(() => {
+                // console.log('update member successfully!');
+
+                this.router.navigateByUrl('/member/list').then(r => Swal.fire(
+                  '' + this.id,
+                  'Cập nhật thành công!',
+                  'success'
+                ));
+
+                // this.router.navigateByUrl('/member/list').then(r => console.log('back to member list!'));
+
+              }, error => {
+
+                console.log(error);
+                console.log(error.error);
+
+                console.log('front-end valid / back-end-error');
+
+                this.errors = error.error;
+                for (let i = 0; i < this.errors.length; i++) {
+
+                  // console.log(this.errors[i].field);
+                  // console.log(this.errors[i].field == "phone");
+
+                  //need solution to solve a problem - how can show on / off the back-end errors reasonably - KhanhLDQ
+
+                  //field-name
+                  if (this.errors[i].field == 'name' && this.errors[i].code == 'NotBlank') {
+                    document.getElementById('name-not-blank').textContent = this.errors[i].defaultMessage;
+
+                    // const element = document.getElementById("name-not-blank");
+                    // if (element) {
+                    //   element.textContent = this.errors[i].defaultMessage;
+                    //   this.nameBlank = true;
+                    // }
+                  }
+
+                  if (this.errors[i].field == 'name' && this.errors[i].code == 'Size') {
+                    document.getElementById('name-size').textContent = this.errors[i].defaultMessage;
+                  }
+
+                  if (this.errors[i].field == 'name' && this.errors[i].code == 'Pattern') {
+                    document.getElementById('name-pattern').textContent = this.errors[i].defaultMessage;
+                  }
+
+                  //field-phone
+                  if (this.errors[i].field == 'phone' && this.errors[i].code == 'Pattern') {
+                    document.getElementById('phone-pattern').textContent = this.errors[i].defaultMessage;
+                  }
+
+                  if (this.errors[i].field == 'phone' && this.errors[i].code == 'NotBlank') {
+                    document.getElementById('phone-not-blank').textContent = this.errors[i].defaultMessage;
+                  }
+
+                  //field-address
+                  if (this.errors[i].field == 'address' && this.errors[i].code == 'NotBlank') {
+                    document.getElementById('address-not-blank').textContent = this.errors[i].defaultMessage;
+                  }
+
+                  //field-dateOfBirth
+                  if (this.errors[i].field == 'dateOfBirth' && this.errors[i].code == 'NotBlank') {
+                    document.getElementById('dateOfBirth-not-blank').textContent = this.errors[i].defaultMessage;
+                  }
+
+                  if (this.errors[i].field == 'dateOfBirth' && this.errors[i].code == 'dateOfBirth.age') {
+                    document.getElementById('dateOfBirth-not-suitable').textContent
+                      = 'Thành viên đăng ký phải lớn hơn 16 tuổi học bé hơn 100 tuổi!';
+                  }
+
+                  //field-identityNumber
+                  if (this.errors[i].field == 'identityNumber' && this.errors[i].code == 'NotBlank') {
+                    document.getElementById('identityNumber-not-blank').textContent = this.errors[i].defaultMessage;
+                  }
+
+                  if (this.errors[i].field == 'identityNumber' && this.errors[i].code == 'Pattern') {
+                    document.getElementById('identityNumber-pattern').textContent = this.errors[i].defaultMessage;
+                  }
+
+                }
+              });
+            } else {
+              console.log('invalid info / front-end');
+            }
+          });
+        })
+      ).subscribe();
+    }
     //memberUpdateForm.valid => chi bat duoc validate tai front-end
   }
 }

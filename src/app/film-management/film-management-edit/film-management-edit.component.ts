@@ -30,6 +30,7 @@ export class FilmManagementEditComponent implements OnInit {
   filmTypeChoose = [];
   startDate = '';
   filmObj: Film;
+  submitted = false;
 // CaHM tạo FormGroup
   formFilm: FormGroup = new FormGroup({
     id: new FormControl(''),
@@ -46,7 +47,7 @@ export class FilmManagementEditComponent implements OnInit {
     studio: new FormControl('', [Validators.required, Validators.pattern('PC\\-0[1-4]')]),
     image: new FormControl(''),
     trailer: new FormControl('', [Validators.required]),
-    version: new FormControl('', [Validators.required, Validators.pattern('[4,8]K')]),
+    version: new FormControl('', [Validators.required, Validators.pattern('[2-3]D')]),
     filmTypeNew: new FormControl(''),
     flagDelete: new FormControl(''),
 
@@ -116,11 +117,13 @@ export class FilmManagementEditComponent implements OnInit {
 
 //  CaHM update film
   update() {
+    this.submitted = true;
+    if(this.formFilm.valid){
     // set th1
     if (this.selectedImage == null && this.filmTypeChoose.toString() == '') {
-      this.flag2 = true ;
+      this.flag2 = true;
       //bien form thanh object assign
-      this.filmObj = Object.assign({},this.formFilm.value);
+      this.filmObj = Object.assign({}, this.formFilm.value);
 
       this.filmObj.filmTypeNew = this.filmTypeNewArr.toString();
       this.filmObj.startDate = this.formFilm.value.groupFilmDate.startDate
@@ -136,12 +139,12 @@ export class FilmManagementEditComponent implements OnInit {
       });
       // set th2
     } else if (this.selectedImage == null) {
-      this.flag2 = true ;
+      this.flag2 = true;
 
       this.formFilm.patchValue({filmTypeNew: this.filmTypeChoose.toString()});
 
       //bien form thanh object assign
-      this.filmObj = Object.assign({},this.formFilm.value);
+      this.filmObj = Object.assign({}, this.formFilm.value);
 
       this.filmObj.startDate = this.formFilm.value.groupFilmDate.startDate
       this.filmObj.endDate = this.formFilm.value.groupFilmDate.endDate
@@ -157,8 +160,8 @@ export class FilmManagementEditComponent implements OnInit {
       });
       //set th3
     } else if (this.filmTypeNewArr.toString() == '') {
-      this.flag2 = true ;
-      console.log( this.formFilm.value);
+      this.flag2 = true;
+      console.log(this.formFilm.value);
       const nameImg = this.getCurrentDateTime() + this.selectedImage.name;
       const fileRef = this.storage.ref(nameImg);
       this.storage.upload(nameImg, this.selectedImage).snapshotChanges().pipe(
@@ -170,7 +173,7 @@ export class FilmManagementEditComponent implements OnInit {
             this.formFilm.patchValue({image: url});
             this.filmObj.filmTypeNew = this.filmTypeNewArr.toString();
             //bien form thanh object assign
-            this.filmObj = Object.assign({},this.formFilm.value);
+            this.filmObj = Object.assign({}, this.formFilm.value);
 
             this.filmObj.startDate = this.formFilm.value.groupFilmDate.startDate
             this.filmObj.endDate = this.formFilm.value.groupFilmDate.endDate
@@ -190,7 +193,7 @@ export class FilmManagementEditComponent implements OnInit {
     }
     // set th4
     else {
-      this.flag2 = true ;
+      this.flag2 = true;
       const nameImg = this.getCurrentDateTime() + this.selectedImage.name;
       const fileRef = this.storage.ref(nameImg);
       this.storage.upload(nameImg, this.selectedImage).snapshotChanges().pipe(
@@ -201,7 +204,7 @@ export class FilmManagementEditComponent implements OnInit {
 
 
             //bien form thanh object assign
-            this.filmObj = Object.assign({},this.formFilm.value);
+            this.filmObj = Object.assign({}, this.formFilm.value);
 
             this.filmObj.startDate = this.formFilm.value.groupFilmDate.startDate
             this.filmObj.endDate = this.formFilm.value.groupFilmDate.endDate
@@ -220,6 +223,8 @@ export class FilmManagementEditComponent implements OnInit {
         })
       ).subscribe();
     }
+
+  }
   };
 
 

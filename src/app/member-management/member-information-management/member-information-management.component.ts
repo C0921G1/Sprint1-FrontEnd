@@ -38,7 +38,7 @@ export class MemberInformationManagementComponent implements OnInit {
   });
 
 
-  imageThis: string;
+  imageThis: string = "assets/img/avatar-register.png";
   member: Member;
 //điểm của member dùng để hiển thị
   currentMemberPoint: number;
